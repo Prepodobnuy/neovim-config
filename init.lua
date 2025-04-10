@@ -38,6 +38,14 @@ vim.keymap.set('n', '<right>', '<cmd>echo "l <- to move"<CR>')
 vim.keymap.set('n', '<up>', '<cmd>echo "k <- to move"<CR>')
 vim.keymap.set('n', '<down>', '<cmd>echo "j <- to move"<CR>')
 
+vim.keymap.set('n', 'CTRL-<Tab>', '<cmd>tabnext <CR>')
+vim.keymap.set('n', '<C-Tab>', '<cmd>tabnext <CR>')
+vim.keymap.set('n', '<C-r>', function()
+  vim.cmd 'tab split term'
+  vim.cmd 'terminal'
+  vim.cmd 'startinsert'
+end)
+
 --  See `:help wincmd` for a list of all window commands
 vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
@@ -53,7 +61,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = { 'typescript', 'javascript', 'vue', 'css', 'sass', 'scss', 'json' },
+  pattern = { 'typescript', 'javascript', 'vue', 'css', 'sass', 'scss', 'json', 'xml', 'ui' },
   callback = function()
     vim.opt_local.tabstop = 2
     vim.opt_local.shiftwidth = 2
@@ -86,6 +94,8 @@ require('lazy').setup({
   require 'plugins.base.neo-tree',
   -- Quality of life
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  require 'plugins.qol.nvim-colorizer',
+  require 'plugins.qol.noice-nvim',
   require 'plugins.qol.which-key',
   require 'plugins.qol.todo-comments',
   require 'plugins.qol.autopairs',
@@ -112,21 +122,25 @@ require('lazy').setup({
   },
 })
 
--- require('gruvbox').setup {
---   italic = {
---     strings = false,
---     comments = false,
---   },
--- }
--- vim.cmd.colorscheme 'gruvbox'
+require('gruvbox').setup {
+  italic = {
+    strings = false,
+    comments = false,
+  },
+}
 
 -- foreground option can be material, mix, or original
 vim.g.gruvbox_material_foreground = 'material'
 --background option can be hard, medium, soft
-vim.g.gruvbox_material_background = 'medium'
+vim.g.gruvbox_material_background = 'hard'
 vim.g.gruvbox_material_enable_italic = 0
 vim.g.gruvbox_material_better_performance = 1
 
 vim.cmd [[colorscheme gruvbox-material]]
+vim.cmd 'colorscheme arctic'
+vim.cmd [[colorscheme nightfox]]
+vim.cmd [[colorscheme sonokai]]
+vim.cmd [[colorscheme gruvbox-material]]
+vim.cmd.colorscheme 'gruvbox'
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

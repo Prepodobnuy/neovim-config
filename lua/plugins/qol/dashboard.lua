@@ -11,6 +11,16 @@ return {
         shortcut = {
           { desc = '󰊳 Update', group = '@property', action = 'Lazy update', key = 'u' },
           {
+            desc = ' Terminal',
+            group = '@property',
+            action = function()
+              vim.cmd 'tab split term'
+              vim.cmd 'terminal'
+              vim.cmd 'startinsert'
+            end,
+            key = 't',
+          },
+          {
             icon = ' ',
             icon_hl = '@variable',
             desc = 'Files',
