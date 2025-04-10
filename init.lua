@@ -1,7 +1,7 @@
 vim.g.mapleader = ' '
 
-vim.g.loaded_netrwPlugin = 1
-vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 0
+vim.g.loaded_netrw = 0
 vim.g.have_nerd_font = true
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -40,11 +40,10 @@ vim.keymap.set('n', '<down>', '<cmd>echo "j <- to move"<CR>')
 
 vim.keymap.set('n', 'CTRL-<Tab>', '<cmd>tabnext <CR>')
 vim.keymap.set('n', '<C-Tab>', '<cmd>tabnext <CR>')
-vim.keymap.set('n', '<C-r>', function()
-  vim.cmd 'tab split term'
-  vim.cmd 'terminal'
-  vim.cmd 'startinsert'
-end)
+
+-- tabs
+vim.keymap.set('n', '<C-w><C-e>', '<cmd>tab terminal<CR>', { desc = 'Create new t[e]rminal tab' })
+vim.keymap.set('n', '<C-w><C-t>', '<cmd>tabnew<CR>', { desc = 'Create new empty [t]ab' })
 
 --  See `:help wincmd` for a list of all window commands
 vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
@@ -95,7 +94,7 @@ require('lazy').setup({
   -- Quality of life
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
   require 'plugins.qol.nvim-colorizer',
-  require 'plugins.qol.noice-nvim',
+  -- require 'plugins.qol.noice-nvim',
   require 'plugins.qol.which-key',
   require 'plugins.qol.todo-comments',
   require 'plugins.qol.autopairs',

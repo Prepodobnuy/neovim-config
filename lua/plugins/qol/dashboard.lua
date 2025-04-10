@@ -14,8 +14,7 @@ return {
             desc = ' Terminal',
             group = '@property',
             action = function()
-              vim.cmd 'tab split term'
-              vim.cmd 'terminal'
+              vim.cmd 'tab terminal'
               vim.cmd 'startinsert'
             end,
             key = 't',
