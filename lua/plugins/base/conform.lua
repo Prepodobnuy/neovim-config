@@ -23,21 +23,21 @@ return { -- Autoformat
         lsp_format_opt = 'fallback'
       end
       return {
-        timeout_ms = 500,
+        timeout_ms = 100,
         lsp_format = lsp_format_opt,
       }
     end,
     formatters_by_ft = {
       lua = { 'stylua' },
-      python = { 'ruff', lsp_format = 'fallback' },
+      -- python = { 'ruff', lsp_format = 'fallback' },
       rust = { 'rustfmt', lsp_format = 'fallback' },
-      javascript = { 'prettierd', 'prettier', stop_after_first = true },
-      typescript = { 'prettierd', 'prettier', stop_after_first = true },
-      vue = { 'prettierd', 'prettier', stop_after_first = true },
-      html = { 'prettierd', 'prettier', stop_after_first = true },
-      css = { 'prettierd', 'prettier', stop_after_first = true },
-      scss = { 'prettierd', 'prettier', stop_after_first = true },
-      sass = { 'prettierd', 'prettier', stop_after_first = true },
+      javascript = { 'prettier', stop_after_first = true },
+      typescript = { 'prettier', stop_after_first = true },
+      vue = { 'prettier', stop_after_first = true },
+      html = { 'prettier', stop_after_first = true },
+      -- css = { 'prettier', stop_after_first = true },
+      scss = { 'prettier', stop_after_first = true },
+      sass = { 'prettier', stop_after_first = true },
     },
   },
 }
