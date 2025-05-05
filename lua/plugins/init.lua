@@ -13,21 +13,25 @@ local base = {
 local qol = {
   require 'plugins.qol.sleuth',
   require 'plugins.qol.todo-comments',
-  require 'plugins.qol.dashboard',
   require 'plugins.qol.gitsigns',
   require 'plugins.qol.which-key',
-  -- require 'plugins.qol.nvim-scrollbar',
   -- require 'plugins.qol.nvim-highligth-colors',
   -- require 'plugins.qol.autopairs',
   -- require 'plugins.qol.ccc',
   -- require 'plugins.qol.nvim-colorizer',
   -- require 'plugins.qol.bufferline',
-  -- require 'plugins.qol.noice-nvim',
-  -- require 'plugins.qol.tip',
+}
+local useless = {
+  require 'plugins.useless.presence-nvim',
+  require 'plugins.useless.dashboard',
+  -- require 'plugins.useless.nvim-scrollbar',
+  -- require 'plugins.useless.noice-nvim',
+  -- require 'plugins.useless.tip',
 }
 
 return {
   colors.packages,
   base,
   qol,
+  useless,
 }

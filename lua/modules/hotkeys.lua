@@ -28,9 +28,9 @@ end
 
 local tabs = function()
   map('<C-w><C-r>', '<cmd>tab terminal<CR>', 'Create new te[r]minal tab')
-  map('<C-w><C-w>', '<cmd>tabclose<CR>', 'Close tab')
+  map('<C-w><C-c>', '<cmd>tabclose<CR>', 'Close tab')
   map('<C-w><C-t>', '<cmd>tabnew<CR>', 'Create new empty [t]ab')
-  map('<C-w><C-e>', '<cmd>tabnext<CR>', '[n]ext tab')
+  map('<C-w><C-w>', '<cmd>tabnext<CR>', '[n]ext tab')
   map('<C-w><C-q>', '<cmd>tabprev<CR>', 'Previous tab')
 end
 
@@ -39,6 +39,13 @@ local window_movement = function()
   map('<C-l>', '<C-w><C-l>', 'Move focus to the right window')
   map('<C-j>', '<C-w><C-j>', 'Move focus to the lower window')
   map('<C-k>', '<C-w><C-k>', 'Move focus to the upper window')
+end
+
+local window_managment = function()
+  map('<C-e><C-j>', '<C-w><C-v>', 'Split window verticaly')
+  map('<C-e><C-k>', '<C-w><C-s>', 'Split window horizontally')
+  map('<C-e><C-q>', '<cmd>q<CR>', 'Close buffer')
+  map('<C-e><C-w>', '<cmd>w<CR>', 'Write buffer')
 end
 
 local lsp = function()
@@ -62,6 +69,7 @@ M.init = function()
   terminal()
   window_movement()
   lsp()
+  window_managment()
 end
 
 return M
