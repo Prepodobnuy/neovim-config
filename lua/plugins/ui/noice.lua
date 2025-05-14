@@ -12,11 +12,31 @@ return {
         },
       },
       presets = {
-        bottom_search = true,
+        bottom_search = false,
         command_palette = true,
         long_message_to_split = true,
         inc_rename = false,
         lsp_doc_border = false,
+      },
+      views = {
+        cmdline_popup = {
+          position = {
+            row = '100%',
+            col = '0',
+          },
+          size = {
+            width = '100%',
+            height = 'auto',
+          },
+          border = {
+            style = 'none',
+            padding = { 0, 0 },
+          },
+          filter_options = {},
+          win_options = {
+            winhighlight = 'NormalFloat:NormalFloat,FloatBorder:FloatBorder',
+          },
+        },
       },
     }
   end,

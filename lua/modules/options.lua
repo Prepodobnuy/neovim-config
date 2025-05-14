@@ -17,6 +17,7 @@ M.init = function()
   vim.opt.signcolumn = 'yes'
   vim.opt.updatetime = 250
   vim.opt.timeoutlen = 300
+  vim.o.showtabline = 2
   vim.opt.termguicolors = true
   vim.opt.splitright = true
   vim.opt.splitbelow = true

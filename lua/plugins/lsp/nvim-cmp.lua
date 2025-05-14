@@ -5,7 +5,6 @@ return { -- Autocompletion
     {
       'L3MON4D3/LuaSnip',
       build = (function()
-        -- Remove the below condition to re-enable on windows.
         if vim.fn.has 'win32' == 1 or vim.fn.executable 'make' == 0 then
           return
         end
