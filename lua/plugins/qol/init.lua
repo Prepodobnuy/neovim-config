@@ -4,6 +4,6 @@ return {
   require 'plugins.qol.gitsigns',
   require 'plugins.qol.which-key',
   require 'plugins.qol.lsp-lines',
-  require 'plugins.qol.autopairs',
   require 'plugins.qol.ts-autotag',
+  -- require 'plugins.qol.autopairs',
 }

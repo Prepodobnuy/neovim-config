@@ -2,7 +2,7 @@ local M = {}
 
 M.package = {
   'neanias/everforest-nvim',
-  lazy = false,
+  lazy = true,
   config = function()
     require('everforest').setup {}
   end,

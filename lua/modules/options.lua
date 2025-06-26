@@ -1,3 +1,29 @@
+local icons = require 'shared.icons'
+
+local diagnostic_config = {
+  signs = {
+    active = true,
+    values = {
+      { name = 'DiagnosticSignError', text = icons.diagnostic.error },
+      { name = 'DiagnosticSignWarn', text = icons.diagnostic.warn },
+      { name = 'DiagnosticSignHint', text = icons.diagnostic.hint },
+      { name = 'DiagnosticSignInfo', text = icons.diagnostic.info },
+    },
+  },
+  virtual_text = true,
+  update_in_insert = false,
+  underline = true,
+  severity_sort = true,
+  float = {
+    focusable = true,
+    style = 'minimal',
+    border = 'rounded',
+    source = 'always',
+    header = '',
+    prefix = '',
+  },
+}
+
 local M = {}
 
 M.init = function()
@@ -29,6 +55,8 @@ M.init = function()
   vim.schedule(function()
     vim.opt.clipboard = 'unnamedplus'
   end)
+
+  vim.diagnostic.config(diagnostic_config)
 end
 
 return M

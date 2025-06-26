@@ -9,9 +9,9 @@ return {
       win = 'TabLine',
       tail = 'TabLine',
     }
-    local sl = ''
-    local sr = ''
-    --              -- Прямоугольные блоки
+    local sl = ''
+    local sr = ' '
+    --           
     --       
     --        
     --          
@@ -49,7 +49,7 @@ return {
             }
           end),
           {
-            line.sep(sl, theme.tail, theme.fill),
+            line.sep('', theme.tail, theme.fill),
             { '', hl = theme.tail },
           },
           hl = theme.fill,

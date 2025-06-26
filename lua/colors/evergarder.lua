@@ -3,7 +3,7 @@ local M = {}
 M.package = {
   'everviolet/nvim',
   name = 'evergarden',
-  lazy = false,
+  lazy = true,
   opts = {
     theme = {
       variant = 'fall', -- 'winter'|'fall'|'spring'|'summer'

@@ -29,7 +29,7 @@ return { -- Autoformat
     end,
     formatters_by_ft = {
       lua = { 'stylua' },
-      -- python = { 'ruff', lsp_format = 'fallback' },
+      python = { 'ruff format %s' },
       rust = { 'rustfmt', lsp_format = 'fallback' },
       javascript = { 'prettier', stop_after_first = true },
       typescript = { 'prettier', stop_after_first = true },
