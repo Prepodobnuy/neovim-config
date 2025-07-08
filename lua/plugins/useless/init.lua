@@ -1,3 +1,4 @@
 return {
-  require 'plugins.useless.presence-nvim',
+  require 'plugins.useless.highlight-colors',
+  -- require 'plugins.useless.presence-nvim',
 }

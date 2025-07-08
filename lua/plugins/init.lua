@@ -6,5 +6,5 @@ return {
   require 'plugins.lsp',
   require 'plugins.qol',
   require 'plugins.ui',
-  -- require 'plugins.useless',
+  require 'plugins.useless',
 }
