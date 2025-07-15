@@ -35,7 +35,7 @@ return {
       typescript = { 'prettier', stop_after_first = true },
       vue = { 'prettier', stop_after_first = true },
       html = { 'prettier', stop_after_first = true },
-      -- css = { 'prettier', stop_after_first = true },
+      css = { 'prettier', stop_after_first = true },
       scss = { 'prettier', stop_after_first = true },
       sass = { 'prettier', stop_after_first = true },
     },
