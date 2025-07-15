@@ -55,6 +55,9 @@ local plugin_keys = function()
   map('<leader>ls', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Workspace [S]ymbols')
   map('<leader>lr', vim.lsp.buf.rename, '[R]ename')
   map('<leader>lc', vim.lsp.buf.code_action, '[C]ode action', { 'n', 'x' })
+  map('Z', function()
+    vim.cmd 'Neogit'
+  end, '')
 end
 
 M.init = function()
