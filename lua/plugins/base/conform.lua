@@ -28,14 +28,14 @@ return {
       }
     end,
     formatters_by_ft = {
-      lua = { 'stylua' },
+      lua = { 'stylua', prepend_args = { '--indent-type', 'Spaces', '--syntax', 'All' } },
       python = { 'ruff format %s' },
       rust = { 'rustfmt', lsp_format = 'fallback' },
       javascript = { 'prettier', stop_after_first = true },
       typescript = { 'prettier', stop_after_first = true },
       vue = { 'prettier', stop_after_first = true },
       html = { 'prettier', stop_after_first = true },
-      css = { 'prettier', stop_after_first = true },
+      -- css = { 'prettier', stop_after_first = true },
       scss = { 'prettier', stop_after_first = true },
       sass = { 'prettier', stop_after_first = true },
     },

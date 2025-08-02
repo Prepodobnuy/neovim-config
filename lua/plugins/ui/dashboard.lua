@@ -3,31 +3,29 @@ return {
   event = 'VimEnter',
   config = function()
     require('dashboard').setup {
-      theme = 'hyper', -- theme is doom and hyper default is hyper
+      theme = 'doom', -- theme is doom and hyper default is hyper
       config = {
-        week_header = {
-          enable = true,
+        header = {
+          '',
+          '',
+          '',
+          '',
+          ' ██████╗ █████╗ ██╗   ██╗  ██████╗ ███████╗██╗  ██╗',
+          '██╔════╝██╔══██╗╚██╗ ██╔╝ ██╔════╝ ██╔════╝╚██╗██╔╝',
+          '╚█████╗ ███████║ ╚████╔╝  ██║  ██╗ █████╗   ╚███╔╝ ',
+          ' ╚═══██╗██╔══██║  ╚██╔╝   ██║  ╚██╗██╔══╝   ██╔██╗ ',
+          '██████╔╝██║  ██║   ██║    ╚██████╔╝███████╗██╔╝╚██╗',
+          '╚═════╝ ╚═╝  ╚═╝   ╚═╝     ╚═════╝ ╚══════╝╚═╝  ╚═╝',
+          ' ██████╗  █████╗ ██╗   ██╗  ██████╗███████╗██╗  ██╗',
+          '██╔════╝ ██╔══██╗╚██╗ ██╔╝ ██╔════╝██╔════╝╚██╗██╔╝',
+          '██║  ██╗ ███████║ ╚████╔╝  ╚█████╗ █████╗   ╚███╔╝ ',
+          '██║  ╚██╗██╔══██║  ╚██╔╝    ╚═══██╗██╔══╝   ██╔██╗ ',
+          '╚██████╔╝██║  ██║   ██║    ██████╔╝███████╗██╔╝╚██╗',
+          ' ╚═════╝ ╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚══════╝╚═╝  ╚═╝',
         },
-        shortcut = {
-          { desc = '󰊳 Update', group = '@property', action = 'Lazy update', key = 'u' },
-          {
-            desc = ' Terminal',
-            group = '@property',
-            action = function()
-              vim.cmd 'tab terminal'
-              vim.cmd 'startinsert'
-            end,
-            key = 't',
-          },
-          {
-            icon = ' ',
-            icon_hl = '@variable',
-            desc = 'Files',
-            group = 'Label',
-            action = 'Telescope find_files',
-            key = 'f',
-          },
-        },
+        center = {},
+        footer = { '', '', '', '' },
+        vertical_center = true, -- Center the Dashboard on the vertical (from top to bottom)
       },
     }
   end,

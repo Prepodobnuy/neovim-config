@@ -3,6 +3,7 @@ local everforest = require 'colors.everforest'
 local evergarden = require 'colors.evergarder'
 local kanagawa = require 'colors.kanagawa'
 local tokyonight = require 'colors.tokyonight'
+local gruberdarker = require 'colors.gruberdarker'
 
 local M = {}
 
@@ -13,6 +14,7 @@ M.packages = {
   evergarden.package,
   kanagawa.package,
   tokyonight.package,
+  gruberdarker.package,
 }
 
 M.dark = {
@@ -21,6 +23,7 @@ M.dark = {
   everforest = everforest.set,
   evergarden = evergarden.set,
   kanagawa = kanagawa.set,
+  gruberdarker = gruberdarker.set,
 }
 
 M.light = {

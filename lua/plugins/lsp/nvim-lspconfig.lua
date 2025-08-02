@@ -183,9 +183,19 @@ return {
           -- capabilities = {},
           settings = {
             Lua = {
+              runtime = {
+                version = 'LuaJIT',
+                path = vim.split(package.path, ';'),
+              },
               completion = {
                 callSnippet = 'Replace',
               },
+            },
+            diagnostics = {
+              globals = { 'vim', 'melo' },
+            },
+            telemetry = {
+              enable = false,
             },
           },
         },
