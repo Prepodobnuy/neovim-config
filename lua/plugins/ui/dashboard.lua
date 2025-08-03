@@ -1,31 +1,63 @@
+local icons = require 'shared.icons'
+local ascii = require 'shared.ascii'
+local icon = icons.mark .. '  '
+local key_fmt = '[%s]'
+
 return {
   'nvimdev/dashboard-nvim',
   event = 'VimEnter',
   config = function()
     require('dashboard').setup {
-      theme = 'doom', -- theme is doom and hyper default is hyper
+      theme = 'doom',
       config = {
-        header = {
-          '',
-          '',
-          '',
-          '',
-          ' ██████╗ █████╗ ██╗   ██╗  ██████╗ ███████╗██╗  ██╗',
-          '██╔════╝██╔══██╗╚██╗ ██╔╝ ██╔════╝ ██╔════╝╚██╗██╔╝',
-          '╚█████╗ ███████║ ╚████╔╝  ██║  ██╗ █████╗   ╚███╔╝ ',
-          ' ╚═══██╗██╔══██║  ╚██╔╝   ██║  ╚██╗██╔══╝   ██╔██╗ ',
-          '██████╔╝██║  ██║   ██║    ╚██████╔╝███████╗██╔╝╚██╗',
-          '╚═════╝ ╚═╝  ╚═╝   ╚═╝     ╚═════╝ ╚══════╝╚═╝  ╚═╝',
-          ' ██████╗  █████╗ ██╗   ██╗  ██████╗███████╗██╗  ██╗',
-          '██╔════╝ ██╔══██╗╚██╗ ██╔╝ ██╔════╝██╔════╝╚██╗██╔╝',
-          '██║  ██╗ ███████║ ╚████╔╝  ╚█████╗ █████╗   ╚███╔╝ ',
-          '██║  ╚██╗██╔══██║  ╚██╔╝    ╚═══██╗██╔══╝   ██╔██╗ ',
-          '╚██████╔╝██║  ██║   ██║    ██████╔╝███████╗██╔╝╚██╗',
-          ' ╚═════╝ ╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚══════╝╚═╝  ╚═╝',
+        header = ascii.random(),
+        center = {
+          {
+            icon_hl = 'DashboardHeader',
+            desc_hl = 'group',
+            key_hl = 'group',
+            icon = icon,
+            desc = 'Terminal                    ',
+            key = 't',
+            keymap = '<C-e><C-r> ',
+            key_format = key_fmt,
+            action = 'terminal',
+          },
+          {
+            icon_hl = 'DashboardHeader',
+            desc_hl = 'group',
+            key_hl = 'group',
+            icon = icon,
+            desc = 'File tree',
+            key = 'f',
+            keymap = '<\\> ',
+            key_format = key_fmt,
+            action = 'Neotree float',
+          },
+          {
+            icon_hl = 'DashboardHeader',
+            desc_hl = 'group',
+            key_hl = 'group',
+            icon = icon,
+            desc = 'Lazy',
+            key = 'z',
+            keymap = '<Space><z> ',
+            key_format = key_fmt,
+            action = 'Lazy',
+          },
+          {
+            icon_hl = 'DashboardHeader',
+            desc_hl = 'group',
+            key_hl = 'group',
+            icon = icon,
+            desc = 'Exit',
+            key = 'q',
+            key_format = key_fmt,
+            action = 'q',
+          },
         },
-        center = {},
-        footer = { '', '', '', '' },
-        vertical_center = true, -- Center the Dashboard on the vertical (from top to bottom)
+        footer = { '' },
+        vertical_center = false,
       },
     }
   end,

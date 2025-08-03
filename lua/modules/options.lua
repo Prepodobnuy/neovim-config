@@ -43,12 +43,13 @@ M.init = function()
   vim.opt.signcolumn = 'yes'
   vim.opt.updatetime = 250
   vim.opt.timeoutlen = 300
-  vim.o.showtabline = 2
+  vim.opt.swapfile = false
+  vim.opt.showtabline = 2
   vim.opt.termguicolors = true
   vim.opt.splitright = true
   vim.opt.splitbelow = true
   vim.opt.list = true
-  vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+  vim.opt.listchars = { tab = icons.tab, trail = icons.trail, nbsp = icons.nbsp }
   vim.opt.inccommand = 'split'
   vim.opt.cursorline = true
   vim.opt.scrolloff = 20
