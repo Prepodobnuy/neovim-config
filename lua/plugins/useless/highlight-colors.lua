@@ -20,9 +20,7 @@ return {
       enable_tailwind = false,
       exclude_filetypes = {},
       exclude_buftypes = {},
-      exclude_buffer = function(bufnr)
-        return vim.fn.getfsize(vim.api.nvim_buf_get_name(bufnr)) > 1000000
-      end,
+      exclude_buffer = function(bufnr) return vim.fn.getfsize(vim.api.nvim_buf_get_name(bufnr)) > 1000000 end,
     }
   end,
 }

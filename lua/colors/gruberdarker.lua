@@ -1,5 +1,7 @@
 local M = {}
 
+M.title = 'Gruber-darker'
+M.set = function() vim.cmd.colorscheme 'gruber-darker' end
 M.package = {
   'blazkowolf/gruber-darker.nvim',
   opts = {
@@ -9,9 +11,5 @@ M.package = {
     },
   },
 }
-
-M.set = function()
-  vim.cmd.colorscheme 'gruber-darker'
-end
 
 return M

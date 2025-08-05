@@ -26,9 +26,7 @@ return {
         group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
         callback = function(event)
           local function client_supports_method(client, method, bufnr)
-            if not client then
-              return false
-            end
+            if not client then return false end
             if vim.fn.has 'nvim-0.11' == 1 then
               return client:supports_method(method, bufnr)
             else
@@ -37,9 +35,7 @@ return {
           end
 
           local client = vim.lsp.get_client_by_id(event.data.client_id)
-          if not client then
-            return
-          end
+          if not client then return end
 
           if client_supports_method(client, 'textDocument/documentHighlight', event.buf) then
             local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
@@ -71,9 +67,12 @@ return {
           end
 
           if client_supports_method(client, 'textDocument/inlayHint', event.buf) then
-            vim.keymap.set('n', '<leader>th', function()
-              vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
-            end, { desc = '[T]oggle Inlay [H]ints', buffer = event.buf })
+            vim.keymap.set(
+              'n',
+              '<leader>th',
+              function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf }) end,
+              { desc = '[T]oggle Inlay [H]ints', buffer = event.buf }
+            )
           end
         end,
       })
@@ -109,7 +108,9 @@ return {
       local lspconfig = require 'lspconfig'
 
       local vuels_path = vim.fn.expand '$MASON/bin/vue-language-server/node_modules/@vue/language-server'
-      local vue_language_server_path = vim.fn.expand '$MASON/packages' .. '/vue-language-server' .. '/node_modules/@vue/language-server'
+      local vue_language_server_path = vim.fn.expand '$MASON/packages'
+        .. '/vue-language-server'
+        .. '/node_modules/@vue/language-server'
 
       local vue_plugin = {
         name = '@vue/typescript-plugin',

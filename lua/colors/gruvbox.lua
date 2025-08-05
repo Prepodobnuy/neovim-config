@@ -1,13 +1,6 @@
 local M = {}
 
-M.package = {
-  'ellisonleao/gruvbox.nvim',
-  config = function()
-    ---@diagnostic disable-next-line: missing-fields
-  end,
-  lazy = true,
-}
-
+M.title = 'Gruvbox'
 M.set = function()
   require('gruvbox').setup {
     terminal_colors = true,
@@ -25,5 +18,12 @@ M.set = function()
   }
   vim.cmd.colorscheme 'gruvbox'
 end
+M.package = {
+  'ellisonleao/gruvbox.nvim',
+  config = function()
+    ---@diagnostic disable-next-line: missing-fields
+  end,
+  lazy = true,
+}
 
 return M

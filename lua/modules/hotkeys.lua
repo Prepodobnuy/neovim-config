@@ -1,3 +1,5 @@
+local colorscheme = require 'modules.colors'
+
 local M = {}
 
 local map = function(keys, func, desc, mode)
@@ -12,6 +14,7 @@ local bind = function()
   map('<up>', '<cmd>echo "USE [k] TO MOVE YOU STUPID FUCK"<CR>')
   map('<down>', '<cmd>echo "USE [j] TO MOVE YOU STUPID FUCK"<CR>')
   map('<leader>q', vim.diagnostic.setloclist, 'Open diagnostic [Q]uickfix list')
+  map('<leader>c', colorscheme.select, 'Select colorscheme')
 
   -- Terminal
   map('<Esc>', '<cmd>nohlsearch<CR>', '')
@@ -69,14 +72,10 @@ local bind = function()
   map('<leader>lc', vim.lsp.buf.code_action, '[C]ode action', { 'n', 'x' })
 
   -- Neogit
-  map('Z', function()
-    vim.cmd 'Neogit'
-  end, '')
+  map('Z', function() vim.cmd 'Neogit' end, '')
 end
 
-M.init = function()
-  bind()
-end
+M.init = function() bind() end
 
 return M
 

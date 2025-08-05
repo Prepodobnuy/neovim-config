@@ -28,4 +28,3 @@ return { -- Highlight, edit, and navigate code
     indent = { enable = true, disable = { 'ruby' } },
   },
 }
-

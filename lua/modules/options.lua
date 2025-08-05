@@ -31,6 +31,7 @@ M.init = function()
   vim.g.loaded_netrwPlugin = 0
   vim.g.loaded_netrw = 0
   vim.g.have_nerd_font = true
+  vim.opt.winborder = 'none'
   vim.opt.number = true
   vim.opt.relativenumber = true
   vim.opt.mouse = 'a'
@@ -53,9 +54,7 @@ M.init = function()
   vim.opt.inccommand = 'split'
   vim.opt.cursorline = true
   vim.opt.scrolloff = 20
-  vim.schedule(function()
-    vim.opt.clipboard = 'unnamedplus'
-  end)
+  vim.schedule(function() vim.opt.clipboard = 'unnamedplus' end)
 
   vim.diagnostic.config(diagnostic_config)
 end

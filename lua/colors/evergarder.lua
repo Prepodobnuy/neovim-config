@@ -1,5 +1,7 @@
 local M = {}
 
+M.title = 'Evergarden'
+M.set = function() vim.cmd.colorscheme 'evergarden' end
 M.package = {
   'everviolet/nvim',
   name = 'evergarden',
@@ -22,9 +24,5 @@ M.package = {
     },
   },
 }
-
-M.set = function()
-  vim.cmd.colorscheme 'evergarden'
-end
 
 return M
