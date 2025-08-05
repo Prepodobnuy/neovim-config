@@ -8,6 +8,7 @@ M.diagnostic = {
 }
 
 M.mark = '●'
+M.dashboard_mark = '▪  '
 M.tab = '» '
 M.trail = '·'
 M.nbsp = '␣'

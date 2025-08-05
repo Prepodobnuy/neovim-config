@@ -1,6 +1,6 @@
 local icons = require 'shared.icons'
 local ascii = require 'shared.ascii'
-local icon = icons.mark .. '  '
+local icon = icons.dashboard_mark
 local key_fmt = '[%s]'
 
 return {
@@ -44,6 +44,17 @@ return {
             keymap = '<Space><z> ',
             key_format = key_fmt,
             action = 'Lazy',
+          },
+          {
+            icon_hl = 'DashboardHeader',
+            desc_hl = 'group',
+            key_hl = 'group',
+            icon = icon,
+            desc = 'Colorscheme',
+            key = 'c',
+            keymap = '<Space><c> ',
+            key_format = key_fmt,
+            action = 'require("modules.colors").select()',
           },
           {
             icon_hl = 'DashboardHeader',
