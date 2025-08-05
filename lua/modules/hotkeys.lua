@@ -15,6 +15,7 @@ local bind = function()
   map('<down>', '<cmd>echo "USE [j] TO MOVE YOU STUPID FUCK"<CR>')
   map('<leader>q', vim.diagnostic.setloclist, 'Open diagnostic [Q]uickfix list')
   map('<leader>c', colorscheme.select, 'Select colorscheme')
+  map('<leader>v', colorscheme.toggle_theme, 'Toggle colorscheme theme')
 
   -- Terminal
   map('<Esc>', '<cmd>nohlsearch<CR>', '')

@@ -122,4 +122,13 @@ M.select = function()
   end)
 end
 
+M.toggle_theme = function()
+  if vim.o.background == 'dark' then
+    vim.o.background = 'light'
+  else
+    vim.o.background = 'dark'
+  end
+  vim.cmd('colorscheme ' .. vim.g.colors_name)
+end
+
 return M
