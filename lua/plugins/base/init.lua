@@ -4,4 +4,5 @@ return {
   require 'plugins.base.treesitter',
   require 'plugins.base.neo-tree',
   require 'plugins.base.neogit',
+  require 'plugins.base.snacks',
 }

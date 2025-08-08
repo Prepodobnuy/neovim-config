@@ -3,8 +3,9 @@ local everforest = require 'colors.everforest'
 local evergarden = require 'colors.evergarder'
 local kanagawa = require 'colors.kanagawa'
 local tokyonight = require 'colors.tokyonight'
-local tokyonight_day = require 'colors.tokyonight_day'
 local gruberdarker = require 'colors.gruberdarker'
+local mellow = require 'colors.mellow'
+local vscode = require 'colors.vscode'
 
 local M = {}
 
@@ -16,17 +17,18 @@ M.packages = {
   kanagawa.package,
   tokyonight.package,
   gruberdarker.package,
+  mellow.package,
+  vscode.package,
 }
 
-M.tokyonight = tokyonight.dark
-M.tokyonight_day = tokyonight.light
+M.tokyonight = tokyonight.set
 M.gruvbox = gruvbox.set
 M.everforest = everforest.set
 M.evergarden = evergarden.set
 M.kanagawa = kanagawa.set
 M.gruberdarker = gruberdarker.set
-M.tokyonight_day = tokyonight_day.set
-M.tokyonight = tokyonight.set
+M.mellow = mellow.set
+M.vscode = vscode.set
 
 local function colors()
   local res = {}
@@ -36,8 +38,9 @@ local function colors()
   res[evergarden.title] = evergarden
   res[kanagawa.title] = kanagawa
   res[tokyonight.title] = tokyonight
-  res[tokyonight_day.title] = tokyonight_day
   res[gruberdarker.title] = gruberdarker
+  res[mellow.title] = mellow
+  res[vscode.title] = vscode
 
   return res
 end
@@ -113,8 +116,9 @@ M.select = function()
     evergarden.title,
     kanagawa.title,
     tokyonight.title,
-    tokyonight_day.title,
     gruberdarker.title,
+    mellow.title,
+    vscode.title,
   }, {}, function(item)
     if item == nil then return end
     M.save(item)

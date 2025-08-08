@@ -7,4 +7,5 @@ return {
   require 'plugins.qol',
   require 'plugins.ui',
   require 'plugins.useless',
+  -- require 'plugins.dev',
 }
