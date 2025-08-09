@@ -18,4 +18,9 @@ M.folder = {
   empty = '󰜌',
 }
 
+M.lualine_borders = {
+  l = '',
+  r = '',
+}
+
 return M
