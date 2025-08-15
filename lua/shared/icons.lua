@@ -1,26 +1,40 @@
+-- stylua: ignore start
 local M = {}
 
 M.diagnostic = {
-  error = 'E',
-  warn = 'W',
-  hint = 'H',
-  info = 'I',
+  error = 'Ｅ',
+  warn =  'Ｗ',
+  hint =  'Ｈ',
+  info =  'Ｉ',
 }
 
-M.mark = '●'
+M.mark =           '●'
 M.dashboard_mark = ''
-M.tab = '» '
-M.trail = '·'
-M.nbsp = '␣'
+M.tab =            '» '
+M.trail =          '·'
+M.nbsp =           '␣'
 M.folder = {
-  closed = '',
-  open = '',
-  empty = '󰜌',
+  closed =         '',
+  open =           '',
+  empty =          '󰜌',
 }
 
 M.lualine_borders = {
-  l = '',
-  r = '',
+  l = '',
+  r = '',
+}
+
+M.kind = {
+  Class =    ' ',
+  Method =   '󰊕 ',
+  Variable = ' ',
+  Text =     ' ',
+  Function = '󰊕 ',
+  Keyword =  ' ',
+  Snippet =  ' ',
+  File =     ' ',
+  Folder =   ' ',
 }
 
 return M
+-- stylua: ignore end

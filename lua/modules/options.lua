@@ -1,29 +1,5 @@
 local icons = require 'shared.icons'
 
-local diagnostic_config = {
-  signs = {
-    active = true,
-    values = {
-      { name = 'DiagnosticSignError', text = icons.diagnostic.error },
-      { name = 'DiagnosticSignWarn', text = icons.diagnostic.warn },
-      { name = 'DiagnosticSignHint', text = icons.diagnostic.hint },
-      { name = 'DiagnosticSignInfo', text = icons.diagnostic.info },
-    },
-  },
-  virtual_text = true,
-  update_in_insert = false,
-  underline = true,
-  severity_sort = true,
-  float = {
-    focusable = true,
-    style = 'minimal',
-    border = 'rounded',
-    source = 'always',
-    header = '',
-    prefix = '',
-  },
-}
-
 local M = {}
 
 M.init = function()
@@ -31,7 +7,7 @@ M.init = function()
   vim.g.loaded_netrwPlugin = 0
   vim.g.loaded_netrw = 0
   vim.g.have_nerd_font = true
-  vim.opt.winborder = 'none'
+  vim.opt.winborder = 'rounded'
   vim.opt.number = true
   vim.opt.relativenumber = true
   vim.opt.mouse = 'a'
@@ -56,7 +32,36 @@ M.init = function()
   vim.opt.scrolloff = 20
   vim.schedule(function() vim.opt.clipboard = 'unnamedplus' end)
 
-  vim.diagnostic.config(diagnostic_config)
+  vim.diagnostic.config {
+    signs = {
+      values = {
+        { name = 'DiagnosticSignError', text = icons.diagnostic.error },
+        { name = 'DiagnosticSignWarn', text = icons.diagnostic.warn },
+        { name = 'DiagnosticSignInfo', text = icons.diagnostic.info },
+        { name = 'DiagnosticSignHint', text = icons.diagnostic.hint },
+      },
+      text = {
+        [1] = icons.diagnostic.error,
+        [2] = icons.diagnostic.warn,
+        [3] = icons.diagnostic.info,
+        [4] = icons.diagnostic.hint,
+      },
+    },
+    underline = {
+      severity = 'ERROR',
+      current_line = true,
+    },
+    virtual_text = {
+      current_line = true,
+      source = false,
+      prefix = '',
+      suffix = '',
+      spacing = 0,
+      virt_text_pos = 'right_align',
+      hl_mode = 'blend',
+      format = function(diagnostic) return '"' .. diagnostic.message .. '"' end,
+    },
+  }
 end
 
 return M

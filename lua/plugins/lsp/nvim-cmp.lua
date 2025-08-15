@@ -1,3 +1,5 @@
+local icons = require 'shared.icons'
+
 return {
   'hrsh7th/nvim-cmp',
   event = 'InsertEnter',
@@ -17,8 +19,10 @@ return {
     },
     'saadparwaiz1/cmp_luasnip',
     'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-path',
     'hrsh7th/cmp-nvim-lsp-signature-help',
+    'roginfarrer/cmp-css-variables',
   },
   config = function()
     local cmp = require 'cmp'
@@ -48,10 +52,24 @@ return {
           name = 'lazydev',
           group_index = 0,
         },
+        { name = 'css-variables' },
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
         { name = 'path' },
+        { name = 'buffer' },
         { name = 'nvim_lsp_signature_help' },
+      },
+      window = {
+        completion = cmp.config.window.bordered {
+          border = vim.g.winborder,
+        },
+      },
+      formatting = {
+        fields = { 'kind', 'abbr', 'menu' },
+        format = function(entry, item)
+          item.kind = icons.kind[item.kind] or ''
+          return require('nvim-highlight-colors').format(entry, item)
+        end,
       },
     }
   end,

@@ -8,7 +8,7 @@ M.init = function()
   })
 
   vim.api.nvim_create_autocmd('FileType', {
-    pattern = { 'typescript', 'javascript', 'vue', 'css', 'sass', 'scss', 'json', 'xml', 'ui', 'lua', 'svelte' },
+    pattern = { 'typescript', 'javascript', 'vue', 'css', 'sass', 'scss', 'json', 'xml', 'ui', 'lua', 'svelte', 'html' },
     callback = function()
       vim.opt_local.tabstop = 2
       vim.opt_local.shiftwidth = 2
@@ -18,7 +18,7 @@ M.init = function()
   })
 
   vim.api.nvim_create_autocmd('FileType', {
-    pattern = { 'sql' },
+    pattern = { 'sql', 'c', 'cpp', 'rust' },
     callback = function()
       vim.opt_local.tabstop = 4
       vim.opt_local.shiftwidth = 4
