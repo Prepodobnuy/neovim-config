@@ -1,3 +1,5 @@
+local icons = require 'shared.icons'
+
 return {
   'nanozuki/tabby.nvim',
   config = function()
@@ -9,16 +11,12 @@ return {
       win = 'TabLine',
       tail = 'TabLine',
     }
-    local sl = ''
-    local sr = ' '
-    --           
-    --       
-    --        
-    --          
-    --    
+    local sl = ' ' .. icons.lualine_borders.r
+    local sr = icons.lualine_borders.l
 
     require('tabby').setup {
       line = function(line)
+        local first = true
         return {
           {
             { '', hl = theme.head },
@@ -26,8 +24,13 @@ return {
           },
           line.tabs().foreach(function(tab)
             local hl = tab.is_current() and theme.current_tab or theme.tab
+            local fs = line.sep(sl, hl, theme.fill)
+            if first then
+              fs = line.sep('', hl, theme.fill)
+              first = false
+            end
             return {
-              line.sep(sl, hl, theme.fill),
+              fs,
               tab.is_current() and '' or '',
               tab.number(),
               tab.name(),

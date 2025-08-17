@@ -1,51 +1,29 @@
-local gruvbox = require 'colors.gruvbox'
-local everforest = require 'colors.everforest'
-local evergarden = require 'colors.evergarder'
-local kanagawa = require 'colors.kanagawa'
-local tokyonight = require 'colors.tokyonight'
-local gruberdarker = require 'colors.gruberdarker'
-local mellow = require 'colors.mellow'
-local vscode = require 'colors.vscode'
-
 local M = {}
 
 M.packages = {
   priority = 1000,
-  gruvbox.package,
-  everforest.package,
-  evergarden.package,
-  kanagawa.package,
-  tokyonight.package,
-  gruberdarker.package,
-  mellow.package,
-  vscode.package,
 }
 
-M.tokyonight = tokyonight.set
-M.gruvbox = gruvbox.set
-M.everforest = everforest.set
-M.evergarden = evergarden.set
-M.kanagawa = kanagawa.set
-M.gruberdarker = gruberdarker.set
-M.mellow = mellow.set
-M.vscode = vscode.set
+local colors = {}
+local titles = {}
 
-local function colors()
-  local res = {}
-
-  res[gruvbox.title] = gruvbox
-  res[everforest.title] = everforest
-  res[evergarden.title] = evergarden
-  res[kanagawa.title] = kanagawa
-  res[tokyonight.title] = tokyonight
-  res[gruberdarker.title] = gruberdarker
-  res[mellow.title] = mellow
-  res[vscode.title] = vscode
-
-  return res
+local function add_color(color)
+  table.insert(M.packages, color.package)
+  table.insert(titles, color.title)
+  M[color.title] = color.set
+  colors[color.title] = color
 end
 
-local cache = vim.fn.expand '~/.cache/nvim-last-colorscheme'
+add_color(require 'colors.gruvbox')
+add_color(require 'colors.everforest')
+add_color(require 'colors.evergarder')
+add_color(require 'colors.kanagawa')
+add_color(require 'colors.tokyonight')
+add_color(require 'colors.gruberdarker')
+add_color(require 'colors.mellow')
+add_color(require 'colors.vscode')
+
+local cache = vim.fn.stdpath 'data' .. '/lastcol'
 
 M.save = function(col)
   if not col or type(col) ~= 'string' then
@@ -101,7 +79,7 @@ M.load = function(fallback)
   end
 
   if content and #content > 0 then
-    if colors()[content] and colors()[content].set then colors()[content].set() end
+    if colors[content] and colors[content].set then colors[content].set() end
   elseif fallback then
     fallback()
   end
@@ -110,19 +88,10 @@ M.load = function(fallback)
 end
 
 M.select = function()
-  vim.ui.select({
-    gruvbox.title,
-    everforest.title,
-    evergarden.title,
-    kanagawa.title,
-    tokyonight.title,
-    gruberdarker.title,
-    mellow.title,
-    vscode.title,
-  }, {}, function(item)
+  vim.ui.select(titles, {}, function(item)
     if item == nil then return end
     M.save(item)
-    colors()[item].set()
+    colors[item].set()
   end)
 end
 

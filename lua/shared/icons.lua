@@ -2,10 +2,10 @@
 local M = {}
 
 M.diagnostic = {
-  error = 'Ｅ',
-  warn =  'Ｗ',
-  hint =  'Ｈ',
-  info =  'Ｉ',
+  error = 'E',
+  warn =  'W',
+  hint =  'H',
+  info =  'I',
 }
 
 M.mark =           '●'
