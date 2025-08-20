@@ -34,6 +34,7 @@ vim.schedule(function() vim.opt.clipboard = 'unnamedplus' end)
 
 vim.diagnostic.config {
   severity_sort = true,
+  underline = false,
   signs = {
     values = {
       { name = 'DiagnosticSignError', text = icons.diagnostic.error },

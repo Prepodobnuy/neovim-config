@@ -18,7 +18,7 @@ return {
         pick = nil,
         keys = {
           { icon = icon, key = 'n', desc = 'New File', action = ':ene | startinsert' },
-          { icon = icon, key = 'f', desc = 'File Tree', action = ':Neotree float' },
+          { icon = icon, key = 'f', desc = 'Files', action = ':Oil' },
           { icon = icon, key = 't', desc = 'Terminal', action = ':terminal' },
           { icon = icon, key = 'c', desc = 'Colorscheme', action = colorscheme.select },
           { icon = icon, key = 'L', desc = 'Lazy', action = ':Lazy' },

@@ -5,6 +5,10 @@ local map = function(keys, func, desc, mode)
   vim.keymap.set(mode, keys, func, { desc = desc })
 end
 
+-- Macros
+map('<leader>ml', require('nvim-macros').select_and_yank_macro, '[L]oad macro')
+map('<leader>ms', require('nvim-macros').save_macro, '[S]ave macro')
+map('<leader>md', require('nvim-macros').delete_macro, '[D]elete macro')
 -- Bulling
 map('<left>', '<cmd>echo "USE [h] TO MOVE YOU STUPID FUCK"<CR>')
 map('<right>', '<cmd>echo "USE [l] TO MOVE YOU STUPID FUCK"<CR>')
@@ -12,6 +16,12 @@ map('<up>', '<cmd>echo "USE [k] TO MOVE YOU STUPID FUCK"<CR>')
 map('<down>', '<cmd>echo "USE [j] TO MOVE YOU STUPID FUCK"<CR>')
 map('<leader>c', colorscheme.select, 'Select colorscheme')
 map('<leader>v', colorscheme.toggle_theme, 'Toggle colorscheme theme')
+map(
+  '<leader>re',
+  '"hy:%s/<C-r>h/<C-r>h/gc<left><left><left>',
+  'Open search and replace for currently selected text',
+  'v'
+)
 -- Diagnostic
 map('<leader>dq', vim.diagnostic.setloclist, 'Open diagnostic [Q]uickfix list')
 map('<leader>dj', function() vim.diagnostic.jump { count = 1 } end, 'Jump to next diagnostic')

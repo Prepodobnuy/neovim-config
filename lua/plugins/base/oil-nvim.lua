@@ -1,7 +1,24 @@
--- https://github.com/stevearc/oil.nvim
+-- https://github.com/stevearc/oil.nvim               <- goat plugin
+-- https://github.com/JezerM/oil-lsp-diagnostics.nvim <- goat plugin
+
+local icons = require 'shared.icons'
 
 return {
   'stevearc/oil.nvim',
+
+  dependencies = {
+    {
+      'JezerM/oil-lsp-diagnostics.nvim',
+      opts = {
+        diagnostic_symbols = {
+          error = icons.diagnostic.error,
+          warn = icons.diagnostic.warn,
+          info = icons.diagnostic.info,
+          hint = icons.diagnostic.hint,
+        },
+      },
+    },
+  },
 
   cmd = 'Oil',
 
@@ -41,7 +58,7 @@ return {
       ['<C-r>'] = 'actions.refresh',
       ['<C-k>'] = { 'actions.parent', mode = 'n' },
       ['<C-j>'] = 'actions.select',
-      ['p'] = { 'actions.preview', mode = 'n' },
+      ['<C-p>'] = { 'actions.preview', mode = 'n' },
       ['h'] = { 'actions.toggle_hidden', mode = 'n' },
       ['_'] = { 'actions.open_cwd', mode = 'n' },
       ['`'] = { 'actions.cd', mode = 'n' },
