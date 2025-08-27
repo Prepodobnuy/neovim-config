@@ -1,5 +1,3 @@
-local colorscheme = require 'modules.colors'
-
 local map = function(keys, func, desc, mode)
   mode = mode or 'n'
   vim.keymap.set(mode, keys, func, { desc = desc })
@@ -14,8 +12,8 @@ map('<left>', '<cmd>echo "USE [h] TO MOVE YOU STUPID FUCK"<CR>')
 map('<right>', '<cmd>echo "USE [l] TO MOVE YOU STUPID FUCK"<CR>')
 map('<up>', '<cmd>echo "USE [k] TO MOVE YOU STUPID FUCK"<CR>')
 map('<down>', '<cmd>echo "USE [j] TO MOVE YOU STUPID FUCK"<CR>')
-map('<leader>c', colorscheme.select, 'Select colorscheme')
-map('<leader>v', colorscheme.toggle_theme, 'Toggle colorscheme theme')
+map('<leader>c', require('colormanager').select, 'Select colorscheme')
+map('<leader>v', require('colormanager').toggle, 'Toggle colorscheme theme')
 map(
   '<leader>re',
   '"hy:%s/<C-r>h/<C-r>h/gc<left><left><left>',
@@ -75,8 +73,8 @@ end
 map('\\', '<cmd>Oil<CR>', 'Oil')
 map('<C-k>', '<cmd>Oil<CR>', 'Oil')
 -- Telescope
-map('gd', require('telescope.builtin').lsp_definitions, 'Goto [D]efinition')
-map('gr', require('telescope.builtin').lsp_references, 'Goto [R]eferences')
+-- map('gd', require('telescope.builtin').lsp_definitions, 'Goto [D]efinition')
+-- map('gr', require('telescope.builtin').lsp_references, 'Goto [R]eferences')
 map('gI', require('telescope.builtin').lsp_implementations, 'Goto [I]mplementation')
 map('<leader>lD', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
 local builtin = require 'telescope.builtin'
@@ -96,9 +94,27 @@ map('<leader>ssi', require('telescope.builtin').lsp_implementations, 'Goto [I]mp
 map('<leader>sst', require('telescope.builtin').lsp_type_definitions, 'Goto [T]ype defenitions')
 map('<leader>sss', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Workspace [S]ymbols')
 map('<leader>ssS', builtin.builtin, '[S]earch [S]elect Telescope')
+
 -- Lsp
+local lsp = vim.lsp
 map('gD', vim.lsp.buf.declaration, 'Goto [D]eclaration')
-map('<leader>lr', vim.lsp.buf.rename, '[R]ename')
-map('<leader>lc', vim.lsp.buf.code_action, '[C]ode action', { 'n', 'x' })
+map('<leader>lr', lsp.buf.rename, '[R]ename')
+map('<leader>lc', lsp.buf.code_action, '[C]ode action', { 'n', 'x' })
+map("<leader>ls", lsp.buf.document_symbol, "Doument Symbols")
+map("<leader>ll", lsp.codelens.run, "run codelens")
+map("<leader>li", vim.cmd.lspinfo, "lspinfo")
+map("<leader>lF", vim.cmd.FormatToggle, "Toggle AutoFormat")
+map("<leader>lI", vim.cmd.Mason, "Mason")
+map("<leader>lS", lsp.buf.workspace_symbol, "Workspace Symbols")
+map("<leader>la", lsp.buf.code_action, "Code Action")
+map("<leader>Th", function() lsp.inlay_hint.enable(not lsp.inlay_hint.is_enabled({})) end, "Toggle Inlayhints")
+
+map("gd", lsp.buf.definition, "Go to definition")
+map("gD", function()
+  local ok, diag = pcall(require, "rj.extras.definition")
+  if ok then
+    diag.get_def()
+  end
+end, "Get the definition in a float")
 -- Neogit
 map('Z', function() vim.cmd 'Neogit' end, '')

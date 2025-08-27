@@ -1,6 +1,5 @@
 local icon = require('shared.icons').dashboard_mark
 local ascii = require 'shared.ascii'
-local colorscheme = require 'modules.colors'
 
 return {
   'folke/snacks.nvim',
@@ -10,7 +9,7 @@ return {
   opts = {
     dashboard = {
       width = 50,
-      row = 5,
+      row = 7,
       col = nil,
       pane_gap = 0,
       autokeys = '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
@@ -18,12 +17,12 @@ return {
         pick = nil,
         keys = {
           { icon = icon, key = 'n', desc = 'New File', action = ':ene | startinsert' },
-          { icon = icon, key = 'f', desc = 'Files', action = ':Oil' },
+          { icon = icon, key = 'f', desc = 'Files',    action = ':Oil' },
           { icon = icon, key = 't', desc = 'Terminal', action = ':terminal' },
-          { icon = icon, key = 'c', desc = 'Colorscheme', action = colorscheme.select },
-          { icon = icon, key = 'L', desc = 'Lazy', action = ':Lazy' },
-          { icon = icon, key = 'M', desc = 'Mason', action = ':Mason' },
-          { icon = icon, key = 'q', desc = 'Quit', action = ':qa' },
+          -- { icon = icon, key = 'c', desc = 'Colorscheme', action = require('colormanager').select },
+          { icon = icon, key = 'L', desc = 'Lazy',     action = ':Lazy' },
+          { icon = icon, key = 'M', desc = 'Mason',    action = ':Mason' },
+          { icon = icon, key = 'q', desc = 'Quit',     action = ':qa' },
         },
         header = ascii.random(),
       },
@@ -50,8 +49,20 @@ return {
         end,
       },
       sections = {
-        { section = 'header' },
-        { section = 'keys', gap = 0, padding = 1 },
+        { section = 'header', width = 100 },
+        -- {
+        --   section = 'terminal',
+        --   cmd = 'chafa ~/.config/nvim/brisket.jpg -c 256 --format symbols --symbols vhalf --size 50x8 --stretch',
+        --   padding = 1,
+        --   height = 8,
+        --   width = 50,
+        -- },
+        {
+          section = 'keys',
+          gap = 0,
+          padding = 1,
+          width = 10,
+        },
         { section = 'startup' },
       },
     },

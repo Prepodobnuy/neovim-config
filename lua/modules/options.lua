@@ -7,7 +7,7 @@ vim.g.mapleader = ' '
 vim.g.loaded_netrwPlugin = 0
 vim.g.loaded_netrw = 0
 vim.g.have_nerd_font = true
-vim.opt.winborder = 'rounded'
+vim.opt.winborder = 'none'
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.mouse = 'a'
@@ -38,9 +38,9 @@ vim.diagnostic.config {
   signs = {
     values = {
       { name = 'DiagnosticSignError', text = icons.diagnostic.error },
-      { name = 'DiagnosticSignWarn', text = icons.diagnostic.warn },
-      { name = 'DiagnosticSignInfo', text = icons.diagnostic.info },
-      { name = 'DiagnosticSignHint', text = icons.diagnostic.hint },
+      { name = 'DiagnosticSignWarn',  text = icons.diagnostic.warn },
+      { name = 'DiagnosticSignInfo',  text = icons.diagnostic.info },
+      { name = 'DiagnosticSignHint',  text = icons.diagnostic.hint },
     },
     text = {
       [1] = icons.diagnostic.error,

@@ -7,5 +7,6 @@ return {
   require 'plugins.qol.ts-autotag',
   require 'plugins.qol.nvim-window-picker',
   require 'plugins.qol.nvim-macro',
+  require 'plugins.qol.colormanager',
   -- require 'plugins.qol.autopairs',
 }

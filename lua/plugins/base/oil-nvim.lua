@@ -50,23 +50,15 @@ return {
     cleanup_delay_ms = 2000,
 
     keymaps = {
-      ['g?'] = { 'actions.show_help', mode = 'n' },
-      ['<C-v>'] = { 'actions.select', opts = { vertical = true } },
-      ['<C-h>'] = { 'actions.select', opts = { horizontal = true } },
-      ['<C-t>'] = { 'actions.select', opts = { tab = true } },
-      ['\\'] = { 'actions.close', mode = 'n' },
-      ['<C-r>'] = 'actions.refresh',
       ['<C-k>'] = { 'actions.parent', mode = 'n' },
-      ['<C-j>'] = 'actions.select',
-      ['<C-p>'] = { 'actions.preview', mode = 'n' },
+      ['<C-j>'] = { 'actions.select', mode = 'n' },
+      ['\\'] = { 'actions.close', mode = 'n' },
+      ['r'] = { 'actions.refresh', mode = 'n' },
       ['h'] = { 'actions.toggle_hidden', mode = 'n' },
-      ['_'] = { 'actions.open_cwd', mode = 'n' },
-      ['`'] = { 'actions.cd', mode = 'n' },
-      ['~'] = { 'actions.cd', opts = { scope = 'tab' }, mode = 'n' },
-      ['gs'] = { 'actions.change_sort', mode = 'n' },
-      ['gx'] = 'actions.open_external',
-      ['g\\'] = { 'actions.toggle_trash', mode = 'n' },
+      ['g?'] = { 'actions.show_help', mode = 'n' },
     },
+
+    use_default_keymaps = false,
 
     view_options = {
       is_always_hidden = function(name, bufnr) return false end,
