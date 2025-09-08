@@ -1,5 +1,8 @@
+-- https://github.com/Prepodobnuy/colormanager.nvim
+
 return {
-  'prepodobnuy/colormanager.nvim', -- MY OWN PLUGIN WOW =) https://github.com/Prepodobnuy/colormanager.nvim
+  'prepodobnuy/colormanager.nvim',
+  lazy = true,
   priority = 1000,
   opts = {
     colors = {
@@ -13,6 +16,8 @@ return {
       { name = 'Mellow', set = 'mellow' },
       { name = 'Tokyonight', set = 'tokyonight' },
       { name = 'Vscode', set = 'vscode' },
+      { name = 'Tender', set = 'tender' },
+      { name = 'Techbase', set = 'techbase' },
     },
     fallback = 'Gruvbox',
   },
@@ -27,5 +32,7 @@ return {
     'mellow-theme/mellow.nvim',
     'folke/tokyonight.nvim',
     'Mofiqul/vscode.nvim',
+    'jacoborus/tender.vim',
+    'mcauley-penney/techbase.nvim',
   },
 }

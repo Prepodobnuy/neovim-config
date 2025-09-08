@@ -1,6 +1,6 @@
 -- https://github.com/nvim-lualine/lualine.nvim
 
-local icons = require 'shared.icons'
+local sep = require('shared.icons').lualine.sep
 
 return {
   'nvim-lualine/lualine.nvim',
@@ -10,9 +10,8 @@ return {
       options = {
         icons_enabled = true,
         theme = 'auto',
-        --          
-        component_separators = { left = '', right = '' },
-        section_separators = { left = icons.lualine_borders.l, right = icons.lualine_borders.r },
+        component_separators = { left = sep.component_left, right = sep.component_right },
+        section_separators = { left = sep.section_left, right = sep.section_right },
         disabled_filetypes = {
           statusline = {},
           winbar = {},

@@ -73,13 +73,29 @@ capabilities.textDocument.foldingRange = {
 capabilities.textDocument.semanticTokens.multilineTokenSupport = true
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-vim.lsp.config('*', {
-  capabilities = capabilities,
-  on_attach = function(client, bufnr)
-    local ok, diag = pcall(require, 'rj.extras.workspace-diagnostic')
-    if ok then diag.populate_workspace_diagnostics(client, bufnr) end
-  end,
-})
+local cmp = require 'cmp_nvim_lsp'
+
+if cmp then
+  vim.lsp.config(
+    '*',
+    cmp.default_capabilities {
+      capabilities = capabilities,
+      on_attach = function(client, bufnr)
+        local ok, diag = pcall(require, 'rj.extras.workspace-diagnostic')
+        if ok then diag.populate_workspace_diagnostics(client, bufnr) end
+      end,
+    }
+  )
+else
+  vim.lsp.config('*', {
+    capabilities = capabilities,
+    on_attach = function(client, bufnr)
+      local ok, diag = pcall(require, 'rj.extras.workspace-diagnostic')
+      if ok then diag.populate_workspace_diagnostics(client, bufnr) end
+    end,
+  })
+end
+
 -- }}}
 
 -- Disable the default keybinds {{{
@@ -129,8 +145,12 @@ vim.lsp.config.lua_ls = {
   filetypes = { 'lua' },
   root_markers = { '.luarc.json', '.git', vim.uv.cwd() },
   settings = {
+    autoformat = false,
     Lua = {
       telemetry = {
+        enable = false,
+      },
+      format = {
         enable = false,
       },
     },
@@ -183,7 +203,7 @@ vim.api.nvim_create_autocmd('FileType', {
       vim.uv.cwd(),
     })
     local client =
-        vim.lsp.start(vim.tbl_extend('force', vim.lsp.config.basedpyright, { root_dir = root }), { attach = false })
+      vim.lsp.start(vim.tbl_extend('force', vim.lsp.config.basedpyright, { root_dir = root }), { attach = false })
     if client then vim.lsp.buf_attach_client(0, client) end
   end,
 })
@@ -245,30 +265,35 @@ vim.lsp.enable 'clangd'
 -- }}}
 
 -- Rust {{{
-vim.lsp.config.rust_analyzer = {
-  filetypes = { 'rust' },
-  cmd = { 'rust-analyzer' },
-  workspace_required = true,
-  root_dir = function(buf, cb)
-    local root = vim.fs.root(buf, { 'Cargo.toml', 'rust-project.json' })
-    local out = vim.system({ 'cargo', 'metadata', '--no-deps', '--format-version', '1' }, { cwd = root }):wait()
-    if out.code ~= 0 then return cb(root) end
-
-    local ok, result = pcall(vim.json.decode, out.stdout)
-    if ok and result.workspace_root then return cb(result.workspace_root) end
-
-    return cb(root)
-  end,
-  settings = {
-    autoformat = false,
-    ['rust-analyzer'] = {
-      check = {
-        command = 'clippy',
-      },
-    },
-  },
-}
-vim.lsp.enable 'rust_analyzer'
+-- WARN: deprecated because of plugins.rustace
+--
+-- vim.lsp.config.rust_analyzer = {
+--   filetypes = { 'rust' },
+--   cmd = { 'rust-analyzer' },
+--   workspace_required = true,
+--   root_dir = function(buf, cb)
+--     local root = vim.fs.root(buf, { 'Cargo.toml', 'rust-project.json' })
+--     local out = vim.system({ 'cargo', 'metadata', '--no-deps', '--format-version', '1' }, { cwd = root }):wait()
+--     if out.code ~= 0 then return cb(root) end
+--
+--     local ok, result = pcall(vim.json.decode, out.stdout)
+--     if ok and result.workspace_root then return cb(result.workspace_root) end
+--
+--     return cb(root)
+--   end,
+--   settings = {
+--     autoformat = false,
+--     ['rust-analyzer'] = {
+--       check = {
+--         command = 'clippy',
+--       },
+--       cargo = {
+--         features = 'all',
+--       },
+--     },
+--   },
+-- }
+-- vim.lsp.enable 'rust_analyzer'
 -- }}}
 
 -- Typst {{{

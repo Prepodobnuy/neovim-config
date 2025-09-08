@@ -1,4 +1,4 @@
-local icons = require 'shared.icons'
+local sep = require('shared.icons').tabby.sep
 
 return {
   'nanozuki/tabby.nvim',
@@ -11,8 +11,6 @@ return {
       win = 'TabLine',
       tail = 'TabLine',
     }
-    local sl = ' ' .. icons.lualine_borders.r
-    local sr = icons.lualine_borders.l
 
     require('tabby').setup {
       line = function(line)
@@ -24,7 +22,7 @@ return {
           },
           line.tabs().foreach(function(tab)
             local hl = tab.is_current() and theme.current_tab or theme.tab
-            local fs = line.sep(sl, hl, theme.fill)
+            local fs = line.sep(sep.right, hl, theme.fill)
             if first then
               fs = line.sep('', hl, theme.fill)
               first = false
@@ -35,7 +33,7 @@ return {
               tab.number(),
               tab.name(),
               tab.close_btn '',
-              line.sep(sr, hl, theme.fill),
+              line.sep(sep.left, hl, theme.fill),
               hl = hl,
               margin = ' ',
             }
@@ -44,10 +42,10 @@ return {
           line.wins_in_tab(line.api.get_current_tab()).foreach(
             function(win)
               return {
-                line.sep(sl, theme.win, theme.fill),
+                line.sep(sep.right, theme.win, theme.fill),
                 win.is_current() and '' or '',
                 win.buf_name(),
-                line.sep(sr, theme.win, theme.fill),
+                line.sep(sep.left, theme.win, theme.fill),
                 hl = theme.win,
                 margin = ' ',
               }

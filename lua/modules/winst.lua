@@ -4,7 +4,6 @@ local M = {}
 
 local function pick_window(msg)
   return require('window-picker').pick_window {
-    hint = vim.g.window_picker_hint or 'floating-big-letter',
     prompt_message = msg or '',
   }
 end
@@ -13,7 +12,7 @@ end
 ---@fleld endless boolean
 
 ---@param opts WindowFuncOpts?
-M.swap = function(opts)
+function M.swap(opts)
   opts = opts or {}
 
   while true do
@@ -34,13 +33,13 @@ M.swap = function(opts)
 end
 
 ---@param opts WindowFuncOpts?
-M.close = function(opts)
+function M.close(opts)
   opts = opts or {}
 
   while true do
     local window = pick_window 'Select window to close'
     if not window then return end
-    vim.api.nvim_win_close(window, vim.g.window_picker_force_close or false)
+    vim.api.nvim_win_close(window, true)
 
     if not opts.endless then return end
   end
@@ -54,7 +53,7 @@ end
 
 -- aliases
 
-M.close_endless = function() M.close { endless = true } end
-M.swap_endless = function() M.swap { endless = true } end
+function M.close_endless() M.close { endless = true } end
+function M.swap_endless() M.swap { endless = true } end
 
 return M

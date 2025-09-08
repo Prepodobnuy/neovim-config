@@ -1,120 +1,122 @@
-local map = function(keys, func, desc, mode)
+local telescope = require 'telescope.builtin'
+local lsp = vim.lsp
+
+-- stylua: ignore start
+
+local keymaps = {
+  -- Macros
+  { '<leader>ml', require('nvim-macros').select_and_yank_macro, 'Macros: [L]oad macro' },
+  { '<leader>ms', require('nvim-macros').save_macro,            'Macros: [S]ave macro' },
+  { '<leader>md', require('nvim-macros').delete_macro,          'Macros: [D]elete macro' },
+
+  -- Bulling
+  { '<left>',  '<cmd>echo "USE [h] TO MOVE YOU STUPID FUCK"<CR>', '' },
+  { '<right>', '<cmd>echo "USE [l] TO MOVE YOU STUPID FUCK"<CR>', '' },
+  { '<up>',    '<cmd>echo "USE [k] TO MOVE YOU STUPID FUCK"<CR>', '' },
+  { '<down>',  '<cmd>echo "USE [j] TO MOVE YOU STUPID FUCK"<CR>', '' },
+  { '<leader>re', '"hy:%s/<C-r>h/<C-r>h/gc<left><left><left>', 'Search/Replace: [R]eplace selected text', 'v' },
+
+  -- Diagnostic
+  { '<leader>dq', vim.diagnostic.setloclist,                         'Diagnostic: Open [Q]uickfix list' },
+  { '<leader>dj', function() vim.diagnostic.jump { count = 1 } end,  'Diagnostic: [J]ump to next' },
+  { '<leader>dk', function() vim.diagnostic.jump { count = -1 } end, 'Diagnostic: [K]ump to prev' },
+
+  -- Window management
+  { '<C-f>', require('modules.winst').focus,         'Windows: [F]ocus' },
+  { '<C-s>', require('modules.winst').swap,          'Windows: [S]wap' },
+  { '<S-s>', require('modules.winst').swap_endless,  'Windows: Endless [S]wap' },
+  { '<C-c>', require('modules.winst').close,         'Windows: [C]lose' },
+  { '<S-c>', require('modules.winst').close_endless, 'Windows: Endless [C]lose' },
+
+  -- Terminal
+  { '<Esc>', '<cmd>nohlsearch<CR>', '' },
+  { '<Esc><Esc>', '<C-\\><C-n>', 'Terminal: Exit insert mode', 't' },
+
+  -- Tabs and windows
+  { '<C-w><C-r>', '<cmd>tab terminal<CR>', 'Create te[R]minal tab' },
+  { '<C-w><C-c>', '<cmd>tabclose<CR>',     '[C]lose' },
+  { '<C-w><C-t>', '<cmd>tabnew<CR>',       'Create new [T]ab' },
+  { '<C-w><C-w>', '<cmd>tabnext<CR>',      '[N]ext' },
+  { '<C-w><C-q>', '<cmd>tabprev<CR>',      '[P]revious' },
+  { '<C-,>', '<C-w>>',                     'Increase width' },
+  { '<C-.>', '<C-w><',                     'Decrease width' },
+  { '<C-n>', '<C-w>+',                     'Increase height' },
+  { '<C-m>', '<C-w>-',                     'Decrease height' },
+  { '<C-e><C-j>', '<C-w>v',                'Split [V]ertical' },
+  { '<C-e><C-k>', '<C-w>s',                'Split [H]orizontal' },
+  { '<C-e><C-t>', '<C-w>T',                'Move to separate [T]ab' },
+  { '<C-e><C-q>', '<C-w>q',                '[Q]uit' },
+  { '<C-e><C-r>', '<cmd>terminal<CR>',     '[R]eplace with terminal' },
+
+  -- Plugins: Neotree & Oil
+  { '\\', '<cmd>Oil<CR>',    'Files: Open [O]il' },
+  { '<C-k>', '<cmd>Oil<CR>', 'Files: Open [O]il' },
+
+  -- Plugins: Telescope
+  { 'gd',          telescope.lsp_definitions,               '[D]efinitions' },
+  { 'gr',          telescope.lsp_references,                '[R]eferences' },
+  { 'gI',          telescope.lsp_implementations,           '[I]mplementations' },
+  { '<leader>lD',  telescope.lsp_type_definitions,          'Type [D]efinitions' },
+  { '<leader>sh',  telescope.help_tags,                     '[H]elp tags' },
+  { '<leader>sk',  telescope.keymaps,                       '[K]eymaps' },
+  { '<leader>sf',  telescope.find_files,                    '[F]iles' },
+  { '<leader>sw',  telescope.grep_string,                   'Current [W]ord' },
+  { '<leader>sg',  telescope.live_grep,                     '[G]rep' },
+  { '<leader>sd',  telescope.diagnostics,                   '[D]iagnostics' },
+  { '<leader>sr',  telescope.resume,                        '[R]esume' },
+  { '<leader>s.',  telescope.oldfiles,                      'Recent files' },
+  { '<leader>b',   telescope.buffers,                       '[B]uffers' },
+  { '<leader>sD',  telescope.lsp_document_symbols,          '[D]ocument symbols' },
+  { '<leader>ssd', telescope.lsp_definitions,               '[D]efinitions' },
+  { '<leader>ssr', telescope.lsp_references,                '[R]eferences' },
+  { '<leader>ssi', telescope.lsp_implementations,           '[I]mplementations' },
+  { '<leader>sst', telescope.lsp_type_definitions,          '[T]ype definitions' },
+  { '<leader>sss', telescope.lsp_dynamic_workspace_symbols, '[S]ymbols' },
+  { '<leader>ssS', telescope.builtin,                       'Re[S]tore' },
+
+  -- LSP
+  { 'gD', vim.lsp.buf.declaration,                                                        'LSP [D]eclaration' },
+  { '<leader>lr', lsp.buf.rename,                                                         'LSP [R]ename' },
+  { '<leader>lc', lsp.buf.code_action,                                                    'LSP [C]ode action', { 'n', 'x' } },
+  { '<leader>ls', lsp.buf.document_symbol,                                                'LSP Document [S]ymbols' },
+  { '<leader>ll', lsp.codelens.run,                                                       'LSP Run code[L]ens' },
+  { '<leader>li', vim.cmd.lspinfo,                                                        'LSP [I]nfo' },
+  { '<leader>lF', vim.cmd.FormatToggle,                                                   'LSP Toggle [F]ormat' },
+  { '<leader>lI', vim.cmd.Mason,                                                          'LSP [M]ason' },
+  { '<leader>lS', lsp.buf.workspace_symbol,                                               'LSP Workspace [S]ymbols' },
+  { '<leader>la', lsp.buf.code_action,                                                    'LSP Code [A]ction' },
+  { '<leader>Th', function() lsp.inlay_hint.enable(not lsp.inlay_hint.is_enabled {}) end, 'LSP Toggle [H]ints' },
+  { 'gD', function()
+      local ok, diag = pcall(require, 'rj.extras.definition')
+      if ok then diag.get_def() end
+    end, 'LSP: [D]efinition in float' },
+
+  -- Neogit
+  { 'Z', function() vim.cmd 'Neogit' end, 'Neogit: Open' },
+
+  -- Colormanager
+  { '<leader>cs', require('colormanager').select, '[S]elect Colorscheme' },
+  { '<leader>ct', require('colormanager').toggle, '[T]oggle Theme' },
+}
+-- stylua: ignore end
+
+if vim.g.neovide then
+  local maps = {
+    { '<C-=>', function() vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + 0.1 end, '', { 'n', 'v', 'i' } },
+    { '<C-->', function() vim.g.neovide_scale_factor = vim.g.neovide_scale_factor - 0.1 end, '', { 'n', 'v', 'i' } },
+    { '<C-0>', function() vim.g.neovide_scale_factor = 1 end, '', { 'n', 'v', 'i' } },
+  }
+
+  for _, mapping in ipairs(maps) do
+    table.insert(keymaps, mapping)
+  end
+end
+
+local function map(keys, func, desc, mode)
   mode = mode or 'n'
   vim.keymap.set(mode, keys, func, { desc = desc })
 end
 
--- Macros
-map('<leader>ml', require('nvim-macros').select_and_yank_macro, '[L]oad macro')
-map('<leader>ms', require('nvim-macros').save_macro, '[S]ave macro')
-map('<leader>md', require('nvim-macros').delete_macro, '[D]elete macro')
--- Bulling
-map('<left>', '<cmd>echo "USE [h] TO MOVE YOU STUPID FUCK"<CR>')
-map('<right>', '<cmd>echo "USE [l] TO MOVE YOU STUPID FUCK"<CR>')
-map('<up>', '<cmd>echo "USE [k] TO MOVE YOU STUPID FUCK"<CR>')
-map('<down>', '<cmd>echo "USE [j] TO MOVE YOU STUPID FUCK"<CR>')
-map('<leader>c', require('colormanager').select, 'Select colorscheme')
-map('<leader>v', require('colormanager').toggle, 'Toggle colorscheme theme')
-map(
-  '<leader>re',
-  '"hy:%s/<C-r>h/<C-r>h/gc<left><left><left>',
-  'Open search and replace for currently selected text',
-  'v'
-)
--- Diagnostic
-map('<leader>dq', vim.diagnostic.setloclist, 'Open diagnostic [Q]uickfix list')
-map('<leader>dj', function() vim.diagnostic.jump { count = 1 } end, 'Jump to next diagnostic')
-map('<leader>dk', function() vim.diagnostic.jump { count = -1 } end, 'Jump to prev diagnostic')
--- Window stuff [modules/winst.lua]
-map('<C-f>', require('modules.winst').focus, '[F]ocus window')
-map('<C-s>', require('modules.winst').swap, '[S]wap windows')
-map('<S-s>', require('modules.winst').swap_endless, 'endless [S]wap windows')
-map('<C-c>', require('modules.winst').close, '[C]lose window')
-map('<S-c>', require('modules.winst').close_endless, 'endless [C]lose window')
--- Deprecated because of winst:
---
--- map('<C-h>', '<C-w>h', 'Move focus to the left window')
--- map('<C-l>', '<C-w>l', 'Move focus to the right window')
--- map('<C-j>', '<C-w>j', 'Move focus to the lower window')
--- map('<C-k>', '<C-w>k', 'Move focus to the upper window')
--- map('<S-h>', '<C-w>H', 'Move window to left')
--- map('<S-l>', '<C-w>L', 'Move window to right')
--- map('<S-j>', '<C-w>J', 'Move window to bottom')
--- map('<S-k>', '<C-w>K', 'Move window to top')
---
--- Terminal
-map('<Esc>', '<cmd>nohlsearch<CR>', '')
-map('<Esc><Esc>', '<C-\\><C-n>', 'Exit terminal mode', 't')
--- Tabs and windows
-map('<C-w><C-r>', '<cmd>tab terminal<CR>', 'Create new te[R]minal tab')
-map('<C-w><C-c>', '<cmd>tabclose<CR>', 'Close tab')
-map('<C-w><C-t>', '<cmd>tabnew<CR>', 'Create new empty [T]ab')
-map('<C-w><C-w>', '<cmd>tabnext<CR>', '[N]ext tab')
-map('<C-w><C-q>', '<cmd>tabprev<CR>', 'Previous tab')
-map('<C-,>', '<C-w>>', 'Increase window width')
-map('<C-.>', '<C-w><', 'Decrease window width')
-map('<C-n>', '<C-w>+', 'Increase window height')
-map('<C-m>', '<C-w>-', 'Decrease window height')
-map('<C-e><C-j>', '<C-w>v', 'Split window verticaly')
-map('<C-e><C-k>', '<C-w>s', 'Split window horizontally')
-map('<C-e><C-t>', '<C-w>T', 'Move window into separate tab')
-map('<C-e><C-q>', '<C-w>q', 'Close window')
-map('<C-e><C-r>', '<cmd>terminal<CR>', 'Replace window with terminal')
--- Neovide
-if vim.g.neovide then
-  map('<C-=>', ':lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + 0.1<CR>', '', { 'n', 'v', 'i' })
-  map('<C-->', ':lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor - 0.1<CR>', '', { 'n', 'v', 'i' })
-  map('<C-0>', ':lua vim.g.neovide_scale_factor = 1<CR>', '', { 'n', 'v', 'i' })
+for _, mapping in ipairs(keymaps) do
+  map(unpack(mapping))
 end
-
--- Plugins
-
--- Neotree & Oil
--- map('<leader>\\', '<cmd>Neotree position=current<CR>', 'Neotree')
-map('\\', '<cmd>Oil<CR>', 'Oil')
-map('<C-k>', '<cmd>Oil<CR>', 'Oil')
--- Telescope
--- map('gd', require('telescope.builtin').lsp_definitions, 'Goto [D]efinition')
--- map('gr', require('telescope.builtin').lsp_references, 'Goto [R]eferences')
-map('gI', require('telescope.builtin').lsp_implementations, 'Goto [I]mplementation')
-map('<leader>lD', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
-local builtin = require 'telescope.builtin'
-map('<leader>sh', builtin.help_tags, '[S]earch [H]elp')
-map('<leader>sk', builtin.keymaps, '[S]earch [K]eymaps')
-map('<leader>sf', builtin.find_files, '[S]earch [F]iles')
-map('<leader>sw', builtin.grep_string, '[S]earch current [W]ord')
-map('<leader>sg', builtin.live_grep, '[S]earch by [G]rep')
-map('<leader>sd', builtin.diagnostics, '[S]earch [D]iagnostics')
-map('<leader>sr', builtin.resume, '[S]earch [R]esume')
-map('<leader>s.', builtin.oldfiles, '[S]earch Recent Files ("." for repeat)')
-map('<leader>b', builtin.buffers, '[ ] Find existing buffers')
-map('<leader>sD', require('telescope.builtin').lsp_document_symbols, '[D]ocument Symbols')
-map('<leader>ssd', require('telescope.builtin').lsp_definitions, 'Goto [D]efinition')
-map('<leader>ssr', require('telescope.builtin').lsp_references, 'Goto [R]eferences')
-map('<leader>ssi', require('telescope.builtin').lsp_implementations, 'Goto [I]mplementation')
-map('<leader>sst', require('telescope.builtin').lsp_type_definitions, 'Goto [T]ype defenitions')
-map('<leader>sss', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Workspace [S]ymbols')
-map('<leader>ssS', builtin.builtin, '[S]earch [S]elect Telescope')
-
--- Lsp
-local lsp = vim.lsp
-map('gD', vim.lsp.buf.declaration, 'Goto [D]eclaration')
-map('<leader>lr', lsp.buf.rename, '[R]ename')
-map('<leader>lc', lsp.buf.code_action, '[C]ode action', { 'n', 'x' })
-map("<leader>ls", lsp.buf.document_symbol, "Doument Symbols")
-map("<leader>ll", lsp.codelens.run, "run codelens")
-map("<leader>li", vim.cmd.lspinfo, "lspinfo")
-map("<leader>lF", vim.cmd.FormatToggle, "Toggle AutoFormat")
-map("<leader>lI", vim.cmd.Mason, "Mason")
-map("<leader>lS", lsp.buf.workspace_symbol, "Workspace Symbols")
-map("<leader>la", lsp.buf.code_action, "Code Action")
-map("<leader>Th", function() lsp.inlay_hint.enable(not lsp.inlay_hint.is_enabled({})) end, "Toggle Inlayhints")
-
-map("gd", lsp.buf.definition, "Go to definition")
-map("gD", function()
-  local ok, diag = pcall(require, "rj.extras.definition")
-  if ok then
-    diag.get_def()
-  end
-end, "Get the definition in a float")
--- Neogit
-map('Z', function() vim.cmd 'Neogit' end, '')
