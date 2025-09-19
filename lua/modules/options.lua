@@ -23,6 +23,7 @@ vim.opt.termguicolors = true
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 vim.opt.list = true
+vim.opt.cmdheight = 0
 vim.opt.listchars = { tab = icons.tab, trail = icons.trail, nbsp = icons.nbsp }
 vim.opt.inccommand = 'split'
 vim.opt.cursorline = true
@@ -57,3 +58,16 @@ vim.diagnostic.config {
     format = function(diagnostic) return '"' .. diagnostic.message .. '"' end,
   },
 }
+
+if vim.g.neovide then
+  vim.o.guifont = 'UbuntuMono Nerd Font Mono:h14'
+
+  vim.g.neovide_remember_window_size = false
+  vim.g.neovide_remember_window_position = false
+
+  vim.g.neovide_transparency = 1.0
+
+  vim.g.neovide_cursor_vfx_mode = 'torpedo'
+  vim.g.neovide_refresh_rate = 165
+  vim.g.neovide_hide_mouse_when_typing = true
+end

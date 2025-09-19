@@ -1,5 +1,3 @@
--- winst stands for win stuff
-
 local M = {}
 
 local function pick_window(msg)
@@ -9,7 +7,7 @@ local function pick_window(msg)
 end
 
 ---@class WindowFuncOpts
----@fleld endless boolean
+---@field endless boolean?
 
 ---@param opts WindowFuncOpts?
 function M.swap(opts)
@@ -39,21 +37,86 @@ function M.close(opts)
   while true do
     local window = pick_window 'Select window to close'
     if not window then return end
+
+    if #vim.api.nvim_tabpage_list_wins(0) == 3 then
+      vim.cmd 'quit'
+      return
+    end
+
     vim.api.nvim_win_close(window, true)
 
     if not opts.endless then return end
   end
 end
 
-M.focus = function()
-  local window = pick_window 'Select window to focus'
-  if not window then return end
-  vim.api.nvim_set_current_win(window)
+---@param opts WindowFuncOpts?
+function M.focus(opts)
+  opts = opts or {}
+
+  while true do
+    local window = pick_window 'Select window to focus'
+    if not window then return end
+
+    vim.api.nvim_set_current_win(window)
+
+    if not opts.endless then return end
+  end
 end
 
--- aliases
+---@param opts WindowFuncOpts?
+function M.split(opts)
+  opts = opts or {}
 
-function M.close_endless() M.close { endless = true } end
-function M.swap_endless() M.swap { endless = true } end
+  while true do
+    local window = pick_window 'Select window to split'
+
+    if not window then return end
+
+    local width = vim.api.nvim_win_get_width(window)
+    local height = vim.api.nvim_win_get_height(window)
+
+    vim.api.nvim_set_current_win(window)
+
+    if width >= height * 2 then
+      vim.cmd 'vsplit'
+    else
+      vim.cmd 'split'
+    end
+
+    if not opts.endless then return end
+  end
+end
+
+function M.trename()
+  vim.ui.input({ prompt = 'Enter new name for current tab' }, function(input) vim.cmd('TabRename ' .. input) end)
+end
+
+function M.tnew() vim.cmd 'tabnew' end
+function M.tclose() vim.cmd 'tabclose' end
+function M.tnext() vim.cmd 'tabnext' end
+function M.tprev() vim.cmd 'tabprev' end
+function M.term() vim.cmd 'terminal' end
+function M.termtab()
+  vim.cmd 'tabnew'
+  vim.cmd 'terminal'
+end
+
+-- alias
+-- stylua: ignore start
+function M.eclose() M.close { endless = true } end
+function M.eswap()  M.swap  { endless = true } end
+function M.efocus() M.focus { endless = true } end
+function M.esplit() M.split { endless = true } end
+
+vim.api.nvim_create_user_command('Close', M.close, {})
+vim.api.nvim_create_user_command('Swap',  M.swap,  {})
+vim.api.nvim_create_user_command('Focus', M.focus, {})
+vim.api.nvim_create_user_command('Split', M.split, {})
+
+vim.api.nvim_create_user_command('EClose', M.eclose, {})
+vim.api.nvim_create_user_command('ESwap',  M.eswap,  {})
+vim.api.nvim_create_user_command('EFocus', M.efocus, {})
+vim.api.nvim_create_user_command('ESplit', M.esplit, {})
+-- stylua: ignore end
 
 return M

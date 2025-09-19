@@ -19,11 +19,11 @@ return {
         ignore_focus = {},
         always_divide_middle = true,
         always_show_tabline = true,
-        globalstatus = false,
+        globalstatus = true,
         refresh = {
-          statusline = 100,
-          tabline = 100,
-          winbar = 100,
+          statusline = 1000,
+          tabline = 1000,
+          winbar = 1000,
         },
       },
       sections = {
@@ -42,10 +42,28 @@ return {
         lualine_y = {},
         lualine_z = {},
       },
-      tabline = {},
+      tabline = {
+        lualine_a = {
+          {
+            'tabs',
+            mode = 1,
+            max_length = 40,
+            use_mode_colors = true,
+            tabs_color = {
+              inactive = 'lualine_a_inactive',
+            },
+          },
+        },
+        lualine_x = { 'datetime' },
+        lualine_z = {
+          {
+            'hostname',
+          },
+        },
+      },
       winbar = {},
       inactive_winbar = {},
-      extensions = {},
+      extensions = { 'oil', 'mason', 'lazy' },
     }
   end,
 }

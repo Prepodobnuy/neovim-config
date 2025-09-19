@@ -2,7 +2,7 @@
 return {
   require 'plugins.base.conform',  -- Formatter
   require 'plugins.base.nvim-cmp', -- Hints
-  require 'plugins.base.nvim-dap', -- Dap ui
+  -- require 'plugins.base.nvim-dap', -- Dap ui
   require 'plugins.base.snacks',   -- Usefull
   require 'plugins.base.telescope',
   require 'plugins.base.treesitter',
@@ -18,15 +18,18 @@ return {
   require 'plugins.interactive.macro',         -- Save/Load macros
   require 'plugins.interactive.colormanager',  -- Colorscheme manager (my own plugin)
 
-  require 'plugins.informative.which-key',     -- Useful plugin to show you pending keybinds
-  require 'plugins.informative.gitsigns',      -- Display git stuff
-  require 'plugins.informative.todo-comments', -- Highlight  TODO:
+  require 'plugins.informative.which-key',     -- Useful plugin that displays keybinds
+  require 'plugins.informative.gitsigns',      -- Displays git stuff
+  require 'plugins.informative.todo-comments', -- Highlights  TODO:
 
   require 'plugins.qol.ts-autotag',   -- Colorscheme manager (my own plugin)
+  require 'plugins.qol.zen-mode',
+  -- require 'plugins.qol.confirm-quit', -- Usefull while using neovide
 
-  require 'plugins.ui.noice',   -- Command line
-  require 'plugins.ui.tabby',   -- Tabline
-  require 'plugins.ui.lualine', -- Statusline
+  require 'plugins.ui.noice',    -- Command line
+  -- require 'plugins.ui.tabby',   -- Tabline
+  -- require 'plugins.ui.tabline',  -- Tabline
+  require 'plugins.ui.lualine',  -- Statusline
 
   require 'plugins.useless.highlight-colors', -- Highlight colors, rgb(155, 155, 155) (laggy)
   -- require 'plugins.useless.autopairs',     -- Autopair plugin (annoying)

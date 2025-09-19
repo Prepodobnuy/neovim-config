@@ -54,8 +54,8 @@ return {
       ['<C-k>'] = { 'actions.parent', mode = 'n' },
       ['<C-j>'] = { 'actions.select', mode = 'n' },
       ['\\'] = { 'actions.close', mode = 'n' },
-      ['r'] = { 'actions.refresh', mode = 'n' },
-      ['h'] = { 'actions.toggle_hidden', mode = 'n' },
+      ['<C-r>'] = { 'actions.refresh', mode = 'n' },
+      ['<C-h>'] = { 'actions.toggle_hidden', mode = 'n' },
       ['g?'] = { 'actions.show_help', mode = 'n' },
     },
 

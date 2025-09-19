@@ -6,6 +6,7 @@ return {
   priority = 1000,
   opts = {
     colors = {
+      { name = 'Melange', set = 'melange' },
       { name = 'Cyberdream', set = 'cyberdream' },
       { name = 'Everforest', set = 'everforest' },
       { name = 'Evergarden', set = 'evergarden' },
@@ -18,10 +19,13 @@ return {
       { name = 'Vscode', set = 'vscode' },
       { name = 'Tender', set = 'tender' },
       { name = 'Techbase', set = 'techbase' },
+      { name = 'Soyjack', set = 'soyjack' },
+      { name = 'Doom-one', set = 'doom-one' },
     },
-    fallback = 'Gruvbox',
+    fallback = 'Melange',
   },
   dependencies = {
+    'savq/melange-nvim',
     'scottmckendry/cyberdream.nvim',
     'neanias/everforest-nvim',
     'everviolet/nvim',
@@ -34,5 +38,7 @@ return {
     'Mofiqul/vscode.nvim',
     'jacoborus/tender.vim',
     'mcauley-penney/techbase.nvim',
+    'Prepodobnuy/soyjack.nvim',
+    'NTBBloodbath/doom-one.nvim',
   },
 }

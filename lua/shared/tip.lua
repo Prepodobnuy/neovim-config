@@ -9,4 +9,11 @@ M.random = function()
   return tips[math.random(1, #tips)]
 end
 
+-- INFO:
+-- WARN:
+-- TODO:
+
+print(123 + 123 - 1232)
+local a = true
+
 return M
