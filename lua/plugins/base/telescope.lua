@@ -1,10 +1,10 @@
-return { -- Fuzzy Finder (files, lsp, etc)
+return {
   'nvim-telescope/telescope.nvim',
   event = 'VimEnter',
   branch = '0.1.x',
   dependencies = {
     'nvim-lua/plenary.nvim',
-    { -- If encountering errors, see telescope-fzf-native README for installation instructions
+    {
       'nvim-telescope/telescope-fzf-native.nvim',
       build = 'make',
       cond = function() return vim.fn.executable 'make' == 1 end,
@@ -49,8 +49,6 @@ return { -- Fuzzy Finder (files, lsp, etc)
       })
     end, { desc = '[/] Fuzzily search in current buffer' })
 
-    -- It's also possible to pass additional configuration options.
-    --  See `:help telescope.builtin.live_grep()` for information about particular keys
     vim.keymap.set(
       'n',
       '<leader>s/',
@@ -63,7 +61,6 @@ return { -- Fuzzy Finder (files, lsp, etc)
       { desc = '[S]earch [/] in Open Files' }
     )
 
-    -- Shortcut for searching your Neovim configuration files
     vim.keymap.set(
       'n',
       '<leader>sn',
