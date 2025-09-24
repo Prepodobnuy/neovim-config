@@ -2,8 +2,8 @@
 return {
   require 'plugins.base.conform',              -- Formatter
   require 'plugins.base.nvim-cmp',             -- Hints
-  require 'plugins.base.telescope',
-  require 'plugins.base.treesitter',
+  require 'plugins.base.telescope',            -- Fuzzy finder
+  require 'plugins.base.treesitter',           -- Color highlighting & code navigation
 
   require 'plugins.lsp.lazydev',               -- Complete luals configuration
   require 'plugins.lsp.rustace',               -- Complete rust-analuzer configuration
@@ -16,16 +16,12 @@ return {
   require 'plugins.interactive.colormanager',  -- Colorscheme manager (my own plugin)
 
   require 'plugins.informative.gitsigns',      -- Displays git stuff
-  require 'plugins.informative.todo-comments', -- Highlights  TODO:
   require 'plugins.informative.which-key',     -- Useful plugin that displays keybinds
-
-  -- TODO: remove
-  -- kinda useless
-  require 'plugins.ui.noice',                  -- Command line
+  require 'plugins.informative.todo-comments', -- Highlights  TODO:
 
   require 'plugins.ui.lualine',                -- Statusline + Tabline
 
-  -- TODO: replace with less laggy alternative
-  require 'plugins.useless.highlight-colors', -- Highlight colors, rgb(155, 155, 155) (laggy)
+  require 'plugins.qol.highlight-colors',      -- Highlight colors, rgb(155, 155, 155)
+  require 'plugins.qol.ts-autotag',            -- Tags close Before: '<div' | Input: '>' | After: '<div></div>'
 }
 -- stylua: ignore end
