@@ -2,9 +2,12 @@
 return {
   require 'plugins.base.conform',              -- Formatter
   require 'plugins.base.nvim-cmp',             -- Hints
-  require 'plugins.base.snacks',               -- Usefull
   require 'plugins.base.telescope',
   require 'plugins.base.treesitter',
+
+  -- TODO: remove
+  -- why do i need over 9000 plugins just to display dashboard?
+  require 'plugins.base.snacks',
 
   require 'plugins.lsp.lazydev',               -- Complete luals configuration
   require 'plugins.lsp.rustace',               -- Complete rust-analuzer configuration
@@ -20,9 +23,13 @@ return {
   require 'plugins.informative.todo-comments', -- Highlights  TODO:
   require 'plugins.informative.which-key',     -- Useful plugin that displays keybinds
 
+  -- TODO: remove
+  -- kinda useless
   require 'plugins.ui.noice',                  -- Command line
+
   require 'plugins.ui.lualine',                -- Statusline + Tabline
 
+  -- TODO: replace with less laggy alternative
   require 'plugins.useless.highlight-colors', -- Highlight colors, rgb(155, 155, 155) (laggy)
 }
 -- stylua: ignore end
