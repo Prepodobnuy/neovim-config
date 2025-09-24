@@ -28,6 +28,7 @@ vim.opt.listchars = { tab = icons.tab, trail = icons.trail, nbsp = icons.nbsp }
 vim.opt.inccommand = 'split'
 vim.opt.cursorline = true
 vim.opt.scrolloff = 5
+vim.opt.shortmess:append("sI")
 vim.schedule(function() vim.opt.clipboard = 'unnamedplus' end)
 
 vim.diagnostic.config {

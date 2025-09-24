@@ -5,10 +5,6 @@ return {
   require 'plugins.base.telescope',
   require 'plugins.base.treesitter',
 
-  -- TODO: remove
-  -- why do i need over 9000 plugins just to display dashboard?
-  require 'plugins.base.snacks',
-
   require 'plugins.lsp.lazydev',               -- Complete luals configuration
   require 'plugins.lsp.rustace',               -- Complete rust-analuzer configuration
 
