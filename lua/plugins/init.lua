@@ -5,12 +5,10 @@ return {
   require 'plugins.base.snacks',               -- Usefull
   require 'plugins.base.telescope',
   require 'plugins.base.treesitter',
-  -- require 'plugins.base.nvim-dap',          -- Dap ui
 
   require 'plugins.lsp.lazydev',               -- Complete luals configuration
   require 'plugins.lsp.rustace',               -- Complete rust-analuzer configuration
 
-  require 'plugins.interactive.mason',         -- Tooling package manager
   require 'plugins.interactive.neogit',        -- Awesome git interface (magit like)
   require 'plugins.interactive.oil',           -- File explorer
   require 'plugins.interactive.window-picker', -- Best nvim plugin

@@ -31,22 +31,28 @@ vim.opt.scrolloff = 5
 vim.schedule(function() vim.opt.clipboard = 'unnamedplus' end)
 
 vim.diagnostic.config {
-  severity_sort = true,
-  underline = false,
   signs = {
-    values = {
-      { name = 'DiagnosticSignError', text = icons.diagnostic.error },
-      { name = 'DiagnosticSignWarn', text = icons.diagnostic.warn },
-      { name = 'DiagnosticSignInfo', text = icons.diagnostic.info },
-      { name = 'DiagnosticSignHint', text = icons.diagnostic.hint },
-    },
     text = {
-      [1] = icons.diagnostic.error,
-      [2] = icons.diagnostic.warn,
-      [3] = icons.diagnostic.info,
-      [4] = icons.diagnostic.hint,
+      [vim.diagnostic.severity.ERROR] = icons.diagnostic.error,
+      [vim.diagnostic.severity.WARN] = icons.diagnostic.warn,
+      [vim.diagnostic.severity.HINT] = icons.diagnostic.hint,
+      [vim.diagnostic.severity.INFO] = icons.diagnostic.info,
     },
   },
+  update_in_insert = true,
+  underline = true,
+  severity_sort = true,
+
+  float = {
+    focusable = false,
+    style = 'minimal',
+    border = 'single',
+    source = 'always',
+    header = '',
+    prefix = '',
+    suffix = '',
+  },
+
   virtual_text = {
     current_line = true,
     source = false,

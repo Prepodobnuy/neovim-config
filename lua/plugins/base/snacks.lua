@@ -23,7 +23,6 @@ return {
           { icon = icon, key = 'c', desc = 'Colorscheme', action = ':ColorManagerSelect' },
           { icon = icon, key = 'v', desc = 'Theme', action = ':ColorManagerToggle' },
           { icon = icon, key = 'L', desc = 'Lazy', action = ':Lazy' },
-          { icon = icon, key = 'M', desc = 'Mason', action = ':Mason' },
           { icon = icon, key = 'q', desc = 'Quit', action = ':qa' },
         },
         header = ascii.random(),

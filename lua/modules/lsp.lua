@@ -3,29 +3,29 @@
 -- Diagnostics {{{
 local shared_icons = require 'shared.icons'
 
-local config = {
-  signs = {
-    text = {
-      [vim.diagnostic.severity.ERROR] = shared_icons.diagnostic.error,
-      [vim.diagnostic.severity.WARN] = shared_icons.diagnostic.warn,
-      [vim.diagnostic.severity.HINT] = shared_icons.diagnostic.hint,
-      [vim.diagnostic.severity.INFO] = shared_icons.diagnostic.info,
-    },
-  },
-  update_in_insert = true,
-  underline = true,
-  severity_sort = true,
-  float = {
-    focusable = false,
-    style = 'minimal',
-    border = 'single',
-    source = 'always',
-    header = '',
-    prefix = '',
-    suffix = '',
-  },
-}
-vim.diagnostic.config(config)
+-- local config = {
+--   signs = {
+--     text = {
+--       [vim.diagnostic.severity.ERROR] = shared_icons.diagnostic.error,
+--       [vim.diagnostic.severity.WARN] = shared_icons.diagnostic.warn,
+--       [vim.diagnostic.severity.HINT] = shared_icons.diagnostic.hint,
+--       [vim.diagnostic.severity.INFO] = shared_icons.diagnostic.info,
+--     },
+--   },
+--   update_in_insert = true,
+--   underline = true,
+--   severity_sort = true,
+--   float = {
+--     focusable = false,
+--     style = 'minimal',
+--     border = 'single',
+--     source = 'always',
+--     header = '',
+--     prefix = '',
+--     suffix = '',
+--   },
+-- }
+-- vim.diagnostic.config(config)
 -- }}}
 
 -- Improve LSPs UI {{{
@@ -264,8 +264,7 @@ vim.lsp.config.clangd = {
 vim.lsp.enable 'clangd'
 -- }}}
 
--- Rust {{{
--- WARN: deprecated because of plugins.rustace
+-- Rust WARN: deprecated because of plugins.rustace {{{
 --
 -- vim.lsp.config.rust_analyzer = {
 --   filetypes = { 'rust' },
