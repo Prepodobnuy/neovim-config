@@ -30,11 +30,10 @@
 -- ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⠀⢘⠀⠀⠀⠀⠀⠀
 -- ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀
 
-return {
-  's1n7ax/nvim-window-picker',
+pack {
+  src = 'https://github.com/s1n7ax/nvim-window-picker',
   name = 'window-picker',
-  event = 'VeryLazy',
-  version = '2.*',
+  version = '2.4.0',
   opts = {
     hint = 'floating-big-letter',
     selection_chars = 'FJDKSLA;CMRUEIWOQP',

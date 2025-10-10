@@ -159,6 +159,21 @@ vim.lsp.config.lua_ls = {
 vim.lsp.enable 'lua_ls'
 -- }}}
 
+-- Elixir {{{
+-- vim.lsp.config.elixirls = {
+--   cmd = { 'elixir-ls' },
+--   filetypes = { 'elixir', 'eelixir', 'heex', 'surface' },
+--   root_markers = { 'main.exs', 'main.ex', '.git', vim.uv.cwd() },
+--   settings = {
+--     elixirLS = {
+--       enableTestLenses = true,
+--       dialyzerWarnOpts = 'race_conditions,unmatched_returns',
+--     },
+--   },
+-- }
+-- vim.lsp.enable 'elixirls'
+-- }}}
+
 -- Python {{{
 vim.lsp.config.basedpyright = {
   name = 'basedpyright',
@@ -264,8 +279,8 @@ vim.lsp.config.clangd = {
 vim.lsp.enable 'clangd'
 -- }}}
 
--- Rust WARN: deprecated because of plugins.rustace {{{
---
+-- Rust {{{
+
 -- vim.lsp.config.rust_analyzer = {
 --   filetypes = { 'rust' },
 --   cmd = { 'rust-analyzer' },
@@ -293,6 +308,7 @@ vim.lsp.enable 'clangd'
 --   },
 -- }
 -- vim.lsp.enable 'rust_analyzer'
+
 -- }}}
 
 -- Typst {{{

@@ -1,27 +1,23 @@
 -- https://github.com/stevearc/oil.nvim
 -- https://github.com/JezerM/oil-lsp-diagnostics.nvim
 
-local diagnostic = require('shared.icons').diagnostic
+local diagnostic = icons.diagnostic
 
-return {
-  'stevearc/oil.nvim',
-
-  dependencies = {
-    {
-      'JezerM/oil-lsp-diagnostics.nvim',
-      opts = {
-        diagnostic_symbols = {
-          error = diagnostic.error,
-          warn = diagnostic.warn,
-          info = diagnostic.info,
-          hint = diagnostic.hint,
-        },
-      },
+pack {
+  src = 'https://github.com/JezerM/oil-lsp-diagnostics.nvim',
+  name = 'oil-lsp-diagnostics',
+  opts = {
+    diagnostic_symbols = {
+      error = diagnostic.error,
+      warn = diagnostic.warn,
+      info = diagnostic.info,
+      hint = diagnostic.hint,
     },
   },
+}
 
-  cmd = 'Oil',
-
+pack {
+  src = 'https://github.com/stevearc/oil.nvim',
   opts = {
     default_file_explorer = false,
 
@@ -66,5 +62,5 @@ return {
     },
   },
 
-  config = function(_, opts) require('oil').setup(opts) end,
+  config = function(opts) require('oil').setup(opts) end,
 }

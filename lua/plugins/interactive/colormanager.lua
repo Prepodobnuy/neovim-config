@@ -1,12 +1,28 @@
 -- https://github.com/Prepodobnuy/colormanager.nvim
 
-return {
-  'prepodobnuy/colormanager.nvim',
-  lazy = true,
-  priority = 1000,
+pack { src = 'https://github.com/savq/melange-nvim' }
+pack { src = 'https://github.com/scottmckendry/cyberdream.nvim' }
+pack { src = 'https://github.com/neanias/everforest-nvim' }
+pack { src = 'https://github.com/everviolet/nvim' }
+pack { src = 'https://github.com/projekt0n/github-nvim-theme' }
+pack { src = 'https://github.com/blazkowolf/gruber-darker.nvim' }
+pack { src = 'https://github.com/ellisonleao/gruvbox.nvim' }
+pack { src = 'https://github.com/rebelot/kanagawa.nvim' }
+pack { src = 'https://github.com/mellow-theme/mellow.nvim' }
+pack { src = 'https://github.com/folke/tokyonight.nvim' }
+pack { src = 'https://github.com/Mofiqul/vscode.nvim' }
+pack { src = 'https://github.com/jacoborus/tender.vim' }
+pack { src = 'https://github.com/mcauley-penney/techbase.nvim' }
+pack { src = 'https://github.com/Prepodobnuy/soyjack.nvim' }
+pack { src = 'https://github.com/NTBBloodbath/doom-one.nvim' }
+
+pack {
+  src = 'https://github.com/prepodobnuy/colormanager.nvim',
+  name = 'colormanager',
   opts = {
     colors = {
       { name = 'Melange', set = 'melange' },
+      { name = 'Default', set = 'default' },
       { name = 'Cyberdream', set = 'cyberdream' },
       { name = 'Everforest', set = 'everforest' },
       { name = 'Evergarden', set = 'evergarden' },
@@ -23,22 +39,5 @@ return {
       { name = 'Doom-one', set = 'doom-one' },
     },
     fallback = 'Melange',
-  },
-  dependencies = {
-    'savq/melange-nvim',
-    'scottmckendry/cyberdream.nvim',
-    'neanias/everforest-nvim',
-    'everviolet/nvim',
-    'projekt0n/github-nvim-theme',
-    'blazkowolf/gruber-darker.nvim',
-    'ellisonleao/gruvbox.nvim',
-    'rebelot/kanagawa.nvim',
-    'mellow-theme/mellow.nvim',
-    'folke/tokyonight.nvim',
-    'Mofiqul/vscode.nvim',
-    'jacoborus/tender.vim',
-    'mcauley-penney/techbase.nvim',
-    'Prepodobnuy/soyjack.nvim',
-    'NTBBloodbath/doom-one.nvim',
   },
 }

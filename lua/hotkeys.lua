@@ -1,4 +1,4 @@
-local winst = require 'modules.winst'
+local winst = require 'shared.winst'
 local colmgr = require 'colormanager'
 local macro = require 'nvim-macros'
 local neogit = require 'neogit'
@@ -50,6 +50,10 @@ local keymaps = {
   { '<C-n>',      '<C-w>+',                'Increase height' },
   { '<C-m>',      '<C-w>-',                'Decrease height' },
 
+  -- Scratchim
+  { '<leader>bs', '<cmd>Scratchim<CR>',      'Scratch Buffer' },
+  { '<leader>bS', '<cmd>ScratchimSplit<CR>', 'Scratch Buffer (split)' },
+
   -- Oil
   { '<C-k>', '<cmd>Oil<CR>', 'Files: Open [O]il' },
 
@@ -66,7 +70,7 @@ local keymaps = {
   { '<leader>sd',  tscope.diagnostics,                   '[D]iagnostics' },
   { '<leader>sr',  tscope.resume,                        '[R]esume' },
   { '<leader>s.',  tscope.oldfiles,                      'Recent files' },
-  { '<leader>b',   tscope.buffers,                       '[B]uffers' },
+  { '<leader>sb',  tscope.buffers,                       '[B]uffers' },
   { '<leader>sD',  tscope.lsp_document_symbols,          '[D]ocument symbols' },
   { '<leader>ssd', tscope.lsp_definitions,               '[D]efinitions' },
   { '<leader>ssr', tscope.lsp_references,                '[R]eferences' },
@@ -98,6 +102,8 @@ local keymaps = {
   -- Colormanager
   { '<leader>cs', colmgr.select, '[S]elect Colorscheme' },
   { '<leader>ct', colmgr.toggle, '[T]oggle Theme' },
+
+  { '<leader>Tc', '<cmd>HighlightColors Toggle<CR>', 'Toggle [C]olor highlighting' },
 }
 -- stylua: ignore end
 
@@ -119,5 +125,6 @@ local function map(keys, func, desc, mode)
 end
 
 for _, mapping in ipairs(keymaps) do
-  map(unpack(mapping))
+  local function a() map(unpack(mapping)) end
+  pcall(a)
 end

@@ -1,30 +1,20 @@
-local icons = require 'shared.icons'
+-- deps
+pack { src = 'https://github.com/saadparwaiz1/cmp_luasnip.git' }
+pack { src = 'https://github.com/hrsh7th/cmp-nvim-lsp.git' }
+pack { src = 'https://github.com/hrsh7th/cmp-nvim-lsp-signature-help.git' }
+pack { src = 'https://github.com/hrsh7th/cmp-buffer.git' }
+pack { src = 'https://github.com/hrsh7th/cmp-path.git' }
+pack { src = 'https://github.com/roginfarrer/cmp-css-variables.git' }
+pack { src = 'https://github.com/L3MON4D3/LuaSnip.git' }
+pack {
+  src = 'https://github.com/rafamadriz/friendly-snippets.git',
+  config = function() require('luasnip.loaders.from_vscode').lazy_load() end,
+}
 
-return {
-  'hrsh7th/nvim-cmp',
-  event = 'InsertEnter',
-  dependencies = {
-    'neovim/nvim-lspconfig',
-    'saadparwaiz1/cmp_luasnip',
-    'hrsh7th/cmp-nvim-lsp',
-    'hrsh7th/cmp-nvim-lsp-signature-help',
-    'hrsh7th/cmp-buffer',
-    'hrsh7th/cmp-path',
-    'roginfarrer/cmp-css-variables',
-    {
-      'L3MON4D3/LuaSnip',
-      build = (function()
-        if vim.fn.has 'win32' == 1 or vim.fn.executable 'make' == 0 then return end
-        return 'make install_jsregexp'
-      end)(),
-      dependencies = {
-        {
-          'rafamadriz/friendly-snippets',
-          config = function() require('luasnip.loaders.from_vscode').lazy_load() end,
-        },
-      },
-    },
-  },
+pack {
+  src = 'https://github.com/hrsh7th/nvim-cmp.git',
+  events = { 'InsertEnter' },
+
   config = function()
     local cmp = require 'cmp'
     local luasnip = require 'luasnip'

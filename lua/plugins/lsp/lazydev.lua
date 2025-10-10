@@ -1,8 +1,8 @@
 -- https://github.com/folke/lazydev.nvim
 
-return {
-  'folke/lazydev.nvim',
-  ft = 'lua',
+pack {
+  src = 'https://github.com/folke/lazydev.nvim',
+  name = 'lazydev',
   opts = {
     library = {
       { path = '${3rd}/luv/library', words = { 'vim%.uv' } },

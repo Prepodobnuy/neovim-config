@@ -1,5 +1,0 @@
-require 'modules.options'
-require 'modules.lazy'
-require 'modules.lsp'
-require 'modules.hotkeys'
-require 'modules.autocmd'

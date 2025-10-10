@@ -1,8 +1,6 @@
 -- https://github.com/folke/todo-comments.nvim
 
-return {
-  'folke/todo-comments.nvim',
-  event = 'VimEnter',
-  dependencies = { 'nvim-lua/plenary.nvim' },
+pack {
+  src = 'https://github.com/folke/todo-comments.nvim',
   opts = { signs = false },
 }
